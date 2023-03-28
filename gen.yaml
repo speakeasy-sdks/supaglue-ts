@@ -10,6 +10,6 @@ generation:
   sdkFlattening: true
   singleTagPerOp: true
 typescript:
-  version: 1.0.1
+  version: ""
   author: Supaglue
   packageName: supaglue-crm
