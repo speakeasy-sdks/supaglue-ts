@@ -36,8 +36,8 @@ import {
   CreateAccountResponse
 } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import {
-  PhoneNumbersPhoneNumberTypeEnum,
-  AddressesAddressTypeEnum,
+  PhoneNumberTypeEnum,
+  AddressTypeEnum,
 } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 import { AxiosError } from "axios";
@@ -53,7 +53,7 @@ const req: CreateAccountRequest = {
     model: {
       addresses: [
         {
-          addressType: AddressesAddressTypeEnum.Other,
+          addressType: AddressTypeEnum.Other,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -62,7 +62,7 @@ const req: CreateAccountRequest = {
           street2: "null",
         },
         {
-          addressType: AddressesAddressTypeEnum.Billing,
+          addressType: AddressTypeEnum.Billing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -71,7 +71,7 @@ const req: CreateAccountRequest = {
           street2: "null",
         },
         {
-          addressType: AddressesAddressTypeEnum.Shipping,
+          addressType: AddressTypeEnum.Shipping,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -93,11 +93,11 @@ const req: CreateAccountRequest = {
       phoneNumbers: [
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumbersPhoneNumberTypeEnum.Mobile,
+          phoneNumberType: PhoneNumberTypeEnum.Mobile,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumbersPhoneNumberTypeEnum.Primary,
+          phoneNumberType: PhoneNumberTypeEnum.Primary,
         },
       ],
       website: "https://supaglue.com/",
