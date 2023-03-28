@@ -7,14 +7,22 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class UpdateAccountPathParams extends SpeakeasyBase {
+export class UpdateAccountRequestBody extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "model" })
+  @Type(() => shared.CreateUpdateAccount)
+  model: shared.CreateUpdateAccount;
+}
+
+export class UpdateAccountRequest extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+  requestBody: UpdateAccountRequestBody;
+
   @SpeakeasyMetadata({
     data: "pathParam, style=simple;explode=false;name=account_id",
   })
   accountId: string;
-}
 
-export class UpdateAccountHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -30,24 +38,6 @@ export class UpdateAccountHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class UpdateAccountRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateAccount)
-  model: shared.CreateUpdateAccount;
-}
-
-export class UpdateAccountRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: UpdateAccountPathParams;
-
-  @SpeakeasyMetadata()
-  headers: UpdateAccountHeaders;
-
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: UpdateAccountRequestBody;
 }
 
 /**

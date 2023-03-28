@@ -6,24 +6,6 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AxiosResponse } from "axios";
 import { Expose } from "class-transformer";
 
-export class SendPassthroughRequestHeaders extends SpeakeasyBase {
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
-
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
-}
-
 export enum SendPassthroughRequestRequestBodyMethodEnum {
   Get = "GET",
   Post = "POST",
@@ -67,11 +49,24 @@ export class SendPassthroughRequestRequestBody extends SpeakeasyBase {
 }
 
 export class SendPassthroughRequestRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  headers: SendPassthroughRequestHeaders;
-
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: SendPassthroughRequestRequestBody;
+  requestBody: SendPassthroughRequestRequestBody;
+
+  /**
+   * The customer ID that uniquely identifies the customer in your application
+   */
+  @SpeakeasyMetadata({
+    data: "header, style=simple;explode=false;name=x-customer-id",
+  })
+  xCustomerId: string;
+
+  /**
+   * The provider name
+   */
+  @SpeakeasyMetadata({
+    data: "header, style=simple;explode=false;name=x-provider-name",
+  })
+  xProviderName: string;
 }
 
 /**

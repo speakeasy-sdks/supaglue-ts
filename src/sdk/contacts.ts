@@ -53,7 +53,7 @@ export class Contacts {
     try {
       [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
         req,
-        "request",
+        "requestBody",
         "json"
       );
     } catch (e: unknown) {
@@ -65,7 +65,7 @@ export class Contacts {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
+      ...utils.getHeadersFromRequest(req),
       ...reqBodyHeaders,
       ...config?.headers,
     };
@@ -122,16 +122,13 @@ export class Contacts {
     const url: string = utils.generateURL(
       baseURL,
       "/contacts/{contact_id}",
-      req.pathParams
+      req
     );
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
 
     const r = client.request({
       url: url + queryParams,
@@ -185,11 +182,8 @@ export class Contacts {
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
 
     const r = client.request({
       url: url + queryParams,
@@ -244,7 +238,7 @@ export class Contacts {
     try {
       [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
         req,
-        "request",
+        "requestBody",
         "json"
       );
     } catch (e: unknown) {
@@ -256,11 +250,11 @@ export class Contacts {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
+      ...utils.getHeadersFromRequest(req),
       ...reqBodyHeaders,
       ...config?.headers,
     };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const queryParams: string = utils.serializeQueryParams(req);
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
@@ -314,7 +308,7 @@ export class Contacts {
     const url: string = utils.generateURL(
       baseURL,
       "/contacts/{contact_id}",
-      req.pathParams
+      req
     );
 
     let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
@@ -322,7 +316,7 @@ export class Contacts {
     try {
       [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
         req,
-        "request",
+        "requestBody",
         "json"
       );
     } catch (e: unknown) {
@@ -334,7 +328,7 @@ export class Contacts {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
+      ...utils.getHeadersFromRequest(req),
       ...reqBodyHeaders,
       ...config?.headers,
     };

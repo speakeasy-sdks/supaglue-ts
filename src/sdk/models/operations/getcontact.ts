@@ -6,14 +6,12 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class GetContactPathParams extends SpeakeasyBase {
+export class GetContactRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({
     data: "pathParam, style=simple;explode=false;name=contact_id",
   })
   contactId: string;
-}
 
-export class GetContactQueryParams extends SpeakeasyBase {
   /**
    * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces
    */
@@ -21,9 +19,7 @@ export class GetContactQueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=expand",
   })
   expand?: string;
-}
 
-export class GetContactHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -39,17 +35,6 @@ export class GetContactHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class GetContactRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: GetContactPathParams;
-
-  @SpeakeasyMetadata()
-  queryParams: GetContactQueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetContactHeaders;
 }
 
 export class GetContactResponse extends SpeakeasyBase {

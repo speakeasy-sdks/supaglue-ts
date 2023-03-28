@@ -18,13 +18,13 @@
 ### NPM
 
 ```bash
-npm add https://github.com/speakeasy-sdks/supaglue-ts
+npm add supaglue-crm
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/speakeasy-sdks/supaglue-ts
+yarn add supaglue-crm
 ```
 <!-- End SDK Installation -->
 
@@ -41,21 +41,15 @@ import {
 } from "supaglue-crm/dist/sdk/models/shared";
 
 import { AxiosError } from "axios";
-import { SDK } from "supaglue-crm";
-const sdk = new SDK({
+import { Supaglue } from "supaglue-crm";
+const sdk = new Supaglue({
   security: {
-    apiKeyAuth: {
-      apiKey: "YOUR_API_KEY_HERE",
-    },
+    apiKeyAuth: "YOUR_API_KEY_HERE",
   },
 });
 
 const req: CreateAccountRequest = {
-  headers: {
-    xCustomerId: "my-customer-1",
-    xProviderName: "salesforce",
-  },
-  request: {
+  requestBody: {
     model: {
       addresses: [
         {
@@ -109,6 +103,8 @@ const req: CreateAccountRequest = {
       website: "https://supaglue.com/",
     },
   },
+  xCustomerId: "my-customer-1",
+  xProviderName: "salesforce",
 };
 
 sdk.accounts.create(req).then((res: CreateAccountResponse | AxiosError) => {

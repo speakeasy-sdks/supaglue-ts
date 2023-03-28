@@ -6,14 +6,12 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class GetUserPathParams extends SpeakeasyBase {
+export class GetUserRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({
     data: "pathParam, style=simple;explode=false;name=user_id",
   })
   userId: string;
-}
 
-export class GetUserHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -29,14 +27,6 @@ export class GetUserHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class GetUserRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: GetUserPathParams;
-
-  @SpeakeasyMetadata()
-  headers: GetUserHeaders;
 }
 
 export class GetUserResponse extends SpeakeasyBase {

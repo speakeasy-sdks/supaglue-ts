@@ -55,7 +55,7 @@ export class Passthrough {
     try {
       [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
         req,
-        "request",
+        "requestBody",
         "json"
       );
     } catch (e: unknown) {
@@ -67,7 +67,7 @@ export class Passthrough {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
+      ...utils.getHeadersFromRequest(req),
       ...reqBodyHeaders,
       ...config?.headers,
     };

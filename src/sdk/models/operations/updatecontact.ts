@@ -7,14 +7,22 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class UpdateContactPathParams extends SpeakeasyBase {
+export class UpdateContactRequestBody extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "model" })
+  @Type(() => shared.CreateUpdateContact)
+  model: shared.CreateUpdateContact;
+}
+
+export class UpdateContactRequest extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+  requestBody: UpdateContactRequestBody;
+
   @SpeakeasyMetadata({
     data: "pathParam, style=simple;explode=false;name=contact_id",
   })
   contactId: string;
-}
 
-export class UpdateContactHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -30,24 +38,6 @@ export class UpdateContactHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class UpdateContactRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateContact)
-  model: shared.CreateUpdateContact;
-}
-
-export class UpdateContactRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: UpdateContactPathParams;
-
-  @SpeakeasyMetadata()
-  headers: UpdateContactHeaders;
-
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: UpdateContactRequestBody;
 }
 
 /**

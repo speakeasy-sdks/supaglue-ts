@@ -7,42 +7,6 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class SearchOpportunitiesQueryParams extends SpeakeasyBase {
-  /**
-   * The pagination cursor value
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=cursor",
-  })
-  cursor?: string;
-
-  /**
-   * Number of results to return per page
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=page_size",
-  })
-  pageSize?: string;
-}
-
-export class SearchOpportunitiesHeaders extends SpeakeasyBase {
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
-
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
-}
-
 export enum SearchOpportunitiesRequestBodyFiltersAccountId1TypeEnum {
   Equals = "equals",
 }
@@ -71,14 +35,40 @@ export class SearchOpportunitiesRequestBody extends SpeakeasyBase {
 }
 
 export class SearchOpportunitiesRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: SearchOpportunitiesQueryParams;
-
-  @SpeakeasyMetadata()
-  headers: SearchOpportunitiesHeaders;
-
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: SearchOpportunitiesRequestBody;
+  requestBody: SearchOpportunitiesRequestBody;
+
+  /**
+   * The pagination cursor value
+   */
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=cursor",
+  })
+  cursor?: string;
+
+  /**
+   * Number of results to return per page
+   */
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=page_size",
+  })
+  pageSize?: string;
+
+  /**
+   * The customer ID that uniquely identifies the customer in your application
+   */
+  @SpeakeasyMetadata({
+    data: "header, style=simple;explode=false;name=x-customer-id",
+  })
+  xCustomerId: string;
+
+  /**
+   * The provider name
+   */
+  @SpeakeasyMetadata({
+    data: "header, style=simple;explode=false;name=x-provider-name",
+  })
+  xProviderName: string;
 }
 
 /**

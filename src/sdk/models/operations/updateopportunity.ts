@@ -7,14 +7,22 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class UpdateOpportunityPathParams extends SpeakeasyBase {
+export class UpdateOpportunityRequestBody extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "model" })
+  @Type(() => shared.CreateUpdateOpportunity)
+  model: shared.CreateUpdateOpportunity;
+}
+
+export class UpdateOpportunityRequest extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+  requestBody: UpdateOpportunityRequestBody;
+
   @SpeakeasyMetadata({
     data: "pathParam, style=simple;explode=false;name=opportunity_id",
   })
   opportunityId: string;
-}
 
-export class UpdateOpportunityHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -30,24 +38,6 @@ export class UpdateOpportunityHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class UpdateOpportunityRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateOpportunity)
-  model: shared.CreateUpdateOpportunity;
-}
-
-export class UpdateOpportunityRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: UpdateOpportunityPathParams;
-
-  @SpeakeasyMetadata()
-  headers: UpdateOpportunityHeaders;
-
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: UpdateOpportunityRequestBody;
 }
 
 /**

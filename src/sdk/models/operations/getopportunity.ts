@@ -6,14 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class GetOpportunityPathParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=opportunity_id",
-  })
-  opportunityId: string;
-}
-
-export class GetOpportunityQueryParams extends SpeakeasyBase {
+export class GetOpportunityRequest extends SpeakeasyBase {
   /**
    * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces
    */
@@ -21,9 +14,12 @@ export class GetOpportunityQueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=expand",
   })
   expand?: string;
-}
 
-export class GetOpportunityHeaders extends SpeakeasyBase {
+  @SpeakeasyMetadata({
+    data: "pathParam, style=simple;explode=false;name=opportunity_id",
+  })
+  opportunityId: string;
+
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -39,17 +35,6 @@ export class GetOpportunityHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class GetOpportunityRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: GetOpportunityPathParams;
-
-  @SpeakeasyMetadata()
-  queryParams: GetOpportunityQueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetOpportunityHeaders;
 }
 
 export class GetOpportunityResponse extends SpeakeasyBase {

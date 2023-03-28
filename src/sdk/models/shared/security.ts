@@ -4,14 +4,9 @@
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
-export class SchemeAPIKeyAuth extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "security, name=x-api-key" })
-  apiKey: string;
-}
-
 export class Security extends SpeakeasyBase {
   @SpeakeasyMetadata({
-    data: "security, scheme=true;type=apiKey;subtype=header",
+    data: "security, scheme=true;type=apiKey;subtype=header;name=x-api-key",
   })
-  apiKeyAuth: SchemeAPIKeyAuth;
+  apiKeyAuth: string;
 }

@@ -53,7 +53,7 @@ export class Leads {
     try {
       [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
         req,
-        "request",
+        "requestBody",
         "json"
       );
     } catch (e: unknown) {
@@ -65,7 +65,7 @@ export class Leads {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
+      ...utils.getHeadersFromRequest(req),
       ...reqBodyHeaders,
       ...config?.headers,
     };
@@ -119,19 +119,12 @@ export class Leads {
     }
 
     const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/leads/{lead_id}",
-      req.pathParams
-    );
+    const url: string = utils.generateURL(baseURL, "/leads/{lead_id}", req);
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
 
     const r = client.request({
       url: url + queryParams,
@@ -184,11 +177,8 @@ export class Leads {
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
 
     const r = client.request({
       url: url + queryParams,
@@ -236,18 +226,14 @@ export class Leads {
     }
 
     const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/leads/{lead_id}",
-      req.pathParams
-    );
+    const url: string = utils.generateURL(baseURL, "/leads/{lead_id}", req);
 
     let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
     try {
       [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
         req,
-        "request",
+        "requestBody",
         "json"
       );
     } catch (e: unknown) {
@@ -259,7 +245,7 @@ export class Leads {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
+      ...utils.getHeadersFromRequest(req),
       ...reqBodyHeaders,
       ...config?.headers,
     };

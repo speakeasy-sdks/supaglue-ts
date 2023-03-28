@@ -6,14 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class GetLeadPathParams extends SpeakeasyBase {
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=lead_id",
-  })
-  leadId: string;
-}
-
-export class GetLeadQueryParams extends SpeakeasyBase {
+export class GetLeadRequest extends SpeakeasyBase {
   /**
    * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces
    */
@@ -21,9 +14,12 @@ export class GetLeadQueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=expand",
   })
   expand?: string;
-}
 
-export class GetLeadHeaders extends SpeakeasyBase {
+  @SpeakeasyMetadata({
+    data: "pathParam, style=simple;explode=false;name=lead_id",
+  })
+  leadId: string;
+
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -39,17 +35,6 @@ export class GetLeadHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class GetLeadRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: GetLeadPathParams;
-
-  @SpeakeasyMetadata()
-  queryParams: GetLeadQueryParams;
-
-  @SpeakeasyMetadata()
-  headers: GetLeadHeaders;
 }
 
 export class GetLeadResponse extends SpeakeasyBase {

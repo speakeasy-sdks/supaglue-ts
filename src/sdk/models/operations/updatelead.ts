@@ -7,14 +7,22 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class UpdateLeadPathParams extends SpeakeasyBase {
+export class UpdateLeadRequestBody extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "model" })
+  @Type(() => shared.CreateUpdateLead)
+  model: shared.CreateUpdateLead;
+}
+
+export class UpdateLeadRequest extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+  requestBody: UpdateLeadRequestBody;
+
   @SpeakeasyMetadata({
     data: "pathParam, style=simple;explode=false;name=lead_id",
   })
   leadId: string;
-}
 
-export class UpdateLeadHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -30,24 +38,6 @@ export class UpdateLeadHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class UpdateLeadRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateLead)
-  model: shared.CreateUpdateLead;
-}
-
-export class UpdateLeadRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  pathParams: UpdateLeadPathParams;
-
-  @SpeakeasyMetadata()
-  headers: UpdateLeadHeaders;
-
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: UpdateLeadRequestBody;
 }
 
 /**

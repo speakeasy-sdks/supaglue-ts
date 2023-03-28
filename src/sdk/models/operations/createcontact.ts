@@ -7,7 +7,17 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class CreateContactHeaders extends SpeakeasyBase {
+export class CreateContactRequestBody extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "model" })
+  @Type(() => shared.CreateUpdateContact)
+  model: shared.CreateUpdateContact;
+}
+
+export class CreateContactRequest extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+  requestBody: CreateContactRequestBody;
+
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -23,21 +33,6 @@ export class CreateContactHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class CreateContactRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateContact)
-  model: shared.CreateUpdateContact;
-}
-
-export class CreateContactRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  headers: CreateContactHeaders;
-
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: CreateContactRequestBody;
 }
 
 /**

@@ -7,7 +7,17 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class CreateOpportunityHeaders extends SpeakeasyBase {
+export class CreateOpportunityRequestBody extends SpeakeasyBase {
+  @SpeakeasyMetadata()
+  @Expose({ name: "model" })
+  @Type(() => shared.CreateUpdateOpportunity)
+  model: shared.CreateUpdateOpportunity;
+}
+
+export class CreateOpportunityRequest extends SpeakeasyBase {
+  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+  requestBody: CreateOpportunityRequestBody;
+
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -23,21 +33,6 @@ export class CreateOpportunityHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class CreateOpportunityRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateOpportunity)
-  model: shared.CreateUpdateOpportunity;
-}
-
-export class CreateOpportunityRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  headers: CreateOpportunityHeaders;
-
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  request: CreateOpportunityRequestBody;
 }
 
 /**

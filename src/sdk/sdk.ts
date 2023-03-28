@@ -53,7 +53,7 @@ export type SDKProps = {
  *
  * @see {@link https://www.postman.com/supaglue/workspace/supaglue-public/overview} - Try out our API in Postman!
  */
-export class SDK {
+export class Supaglue {
   /**
    * The `Account` Common Model is used to represent a "company" in CRMs.
    */
@@ -83,7 +83,7 @@ export class SDK {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "1.0.0";
+  private _sdkVersion = "1.0.1";
   private _genVersion = "2.16.4";
   private _globals: any;
 

@@ -46,18 +46,11 @@ export class Users {
     }
 
     const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/users/{user_id}",
-      req.pathParams
-    );
+    const url: string = utils.generateURL(baseURL, "/users/{user_id}", req);
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
 
     const r = client.request({
       url: url,
@@ -110,11 +103,8 @@ export class Users {
 
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-    const headers = {
-      ...utils.getHeadersFromRequest(req.headers),
-      ...config?.headers,
-    };
-    const queryParams: string = utils.serializeQueryParams(req.queryParams);
+    const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
 
     const r = client.request({
       url: url + queryParams,

@@ -7,7 +7,7 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export class ListAccountsQueryParams extends SpeakeasyBase {
+export class ListAccountsRequest extends SpeakeasyBase {
   /**
    * If provided, will only return objects created after this datetime
    */
@@ -63,9 +63,7 @@ export class ListAccountsQueryParams extends SpeakeasyBase {
     data: "queryParam, style=form;explode=true;name=updated_before;dateTimeFormat=YYYY-MM-DDThh:mm:ss.sssZ",
   })
   updatedBefore?: Date;
-}
 
-export class ListAccountsHeaders extends SpeakeasyBase {
   /**
    * The customer ID that uniquely identifies the customer in your application
    */
@@ -81,14 +79,6 @@ export class ListAccountsHeaders extends SpeakeasyBase {
     data: "header, style=simple;explode=false;name=x-provider-name",
   })
   xProviderName: string;
-}
-
-export class ListAccountsRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  queryParams: ListAccountsQueryParams;
-
-  @SpeakeasyMetadata()
-  headers: ListAccountsHeaders;
 }
 
 /**
