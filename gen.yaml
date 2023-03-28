@@ -6,9 +6,9 @@ management:
   generationVersion: 2.16.4
 generation:
   telemetryEnabled: false
-  sdkClassName: SDK
-  sdkFlattening: false
-  singleTagPerOp: false
+  sdkClassName: supaglue
+  sdkFlattening: true
+  singleTagPerOp: true
 typescript:
   version: 1.0.0
   author: Supaglue
