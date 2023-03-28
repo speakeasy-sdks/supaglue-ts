@@ -18,13 +18,13 @@
 ### NPM
 
 ```bash
-npm add supaglue-crm
+npm add @speakeasy-sdks/supaglue
 ```
 
 ### Yarn
 
 ```bash
-yarn add supaglue-crm
+yarn add @speakeasy-sdks/supaglue
 ```
 <!-- End SDK Installation -->
 
@@ -34,14 +34,14 @@ yarn add supaglue-crm
 import {
   CreateAccountRequest,
   CreateAccountResponse
-} from "supaglue-crm/dist/sdk/models/operations";
+} from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import {
   PhoneNumbersPhoneNumberTypeEnum,
   AddressesAddressTypeEnum,
-} from "supaglue-crm/dist/sdk/models/shared";
+} from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 import { AxiosError } from "axios";
-import { Supaglue } from "supaglue-crm";
+import { Supaglue } from "@speakeasy-sdks/supaglue";
 const sdk = new Supaglue({
   security: {
     apiKeyAuth: "YOUR_API_KEY_HERE",
