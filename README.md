@@ -1,4 +1,16 @@
-# supaglue-crm
+<div align="center">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/supaglue-labs/supaglue/main/docs/static/img/logo-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/supaglue-labs/supaglue/main/docs/static/img/logo-light.png">
+      <img alt="Supaglue" src="https://raw.githubusercontent.com/supaglue-labs/supaglue/main/docs/static/img/logo-light.png">
+    </picture>
+    <h1>Typescript SDK</h1>
+   <p>The Open Source Unified API for CRM integrations</p>
+   <a href="https://docs.supaglue.com/"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=0000&style=for-the-badge" /></a>
+   <a href="https://github.com/speakeasy-sdks/supaglue-ts/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/supaglue-ts/speakeasy_sdk_generation.yml?style=for-the-badge" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+  <a href="https://github.com/speakeasy-sdks/supaglue-ts/releases"><img src="https://img.shields.io/github/v/release/speakeasy-sdks/supaglue-ts?sort=semver&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
