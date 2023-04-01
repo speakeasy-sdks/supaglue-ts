@@ -50,9 +50,9 @@ const req: CreateAccountRequest = {
         },
       ],
       customFields: {
-        "vero": "perspiciatis",
-        "nulla": "nihil",
-        "fuga": "facilis",
+        "nulla": "corrupti",
+        "illum": "vel",
+        "error": "deserunt",
       },
       description: "Integration API",
       industry: "API's",

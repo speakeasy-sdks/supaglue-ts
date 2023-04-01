@@ -81,9 +81,9 @@ const req: CreateAccountRequest = {
         },
       ],
       customFields: {
-        "vero": "perspiciatis",
-        "nulla": "nihil",
-        "fuga": "facilis",
+        "nulla": "corrupti",
+        "illum": "vel",
+        "error": "deserunt",
       },
       description: "Integration API",
       industry: "API's",
@@ -114,7 +114,7 @@ sdk.accounts.create(req).then((res: CreateAccountResponse | AxiosError) => {
 <!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### accounts
