@@ -1,6 +1,6 @@
 {
   "name": "@speakeasy-sdks/supaglue",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "author": "Supaglue",
   "scripts": {
     "prepare": "tsc --build"
