@@ -94,11 +94,10 @@ export class Opportunities {
       switch (true) {
         case httpRes?.status == 201:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createOpportunity201ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateOpportunity201ApplicationJSON
-              );
+            res.createOpportunity201ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateOpportunity201ApplicationJSON
+            );
           }
           break;
       }
@@ -151,7 +150,7 @@ export class Opportunities {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.opportunity = utils.deserializeJSONResponse(
+            res.opportunity = utils.objectToClass(
               httpRes?.data,
               shared.Opportunity
             );
@@ -206,11 +205,10 @@ export class Opportunities {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.listOpportunities200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.ListOpportunities200ApplicationJSON
-              );
+            res.listOpportunities200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.ListOpportunities200ApplicationJSON
+            );
           }
           break;
       }
@@ -281,7 +279,7 @@ export class Opportunities {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
             res.searchOpportunities200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
+              utils.objectToClass(
                 httpRes?.data,
                 operations.SearchOpportunities200ApplicationJSON
               );
@@ -357,11 +355,10 @@ export class Opportunities {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateOpportunity200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.UpdateOpportunity200ApplicationJSON
-              );
+            res.updateOpportunity200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.UpdateOpportunity200ApplicationJSON
+            );
           }
           break;
       }

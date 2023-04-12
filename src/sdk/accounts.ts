@@ -94,11 +94,10 @@ export class Accounts {
       switch (true) {
         case httpRes?.status == 201:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createAccount201ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateAccount201ApplicationJSON
-              );
+            res.createAccount201ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateAccount201ApplicationJSON
+            );
           }
           break;
       }
@@ -151,10 +150,7 @@ export class Accounts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.account = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.Account
-            );
+            res.account = utils.objectToClass(httpRes?.data, shared.Account);
           }
           break;
       }
@@ -206,11 +202,10 @@ export class Accounts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.listAccounts200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.ListAccounts200ApplicationJSON
-              );
+            res.listAccounts200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.ListAccounts200ApplicationJSON
+            );
           }
           break;
       }
@@ -280,11 +275,10 @@ export class Accounts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.searchAccounts200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.SearchAccounts200ApplicationJSON
-              );
+            res.searchAccounts200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.SearchAccounts200ApplicationJSON
+            );
           }
           break;
       }
@@ -357,11 +351,10 @@ export class Accounts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateAccount200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.UpdateAccount200ApplicationJSON
-              );
+            res.updateAccount200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.UpdateAccount200ApplicationJSON
+            );
           }
           break;
       }

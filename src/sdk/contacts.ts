@@ -94,11 +94,10 @@ export class Contacts {
       switch (true) {
         case httpRes?.status == 201:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createContact201ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateContact201ApplicationJSON
-              );
+            res.createContact201ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateContact201ApplicationJSON
+            );
           }
           break;
       }
@@ -151,10 +150,7 @@ export class Contacts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.contact = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.Contact
-            );
+            res.contact = utils.objectToClass(httpRes?.data, shared.Contact);
           }
           break;
       }
@@ -206,11 +202,10 @@ export class Contacts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.listContacts200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.ListContacts200ApplicationJSON
-              );
+            res.listContacts200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.ListContacts200ApplicationJSON
+            );
           }
           break;
       }
@@ -280,11 +275,10 @@ export class Contacts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.searchContacts200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.SearchContacts200ApplicationJSON
-              );
+            res.searchContacts200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.SearchContacts200ApplicationJSON
+            );
           }
           break;
       }
@@ -357,11 +351,10 @@ export class Contacts {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateContact200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.UpdateContact200ApplicationJSON
-              );
+            res.updateContact200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.UpdateContact200ApplicationJSON
+            );
           }
           break;
       }

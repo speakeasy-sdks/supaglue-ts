@@ -10,7 +10,8 @@ import * as shared from "./models/shared";
 import { Opportunities } from "./opportunities";
 import { Passthrough } from "./passthrough";
 import { Users } from "./users";
-import axios, { AxiosInstance } from "axios";
+import axios from "axios";
+import { AxiosInstance } from "axios";
 
 /**
  * Contains the list of servers available to the SDK
@@ -83,8 +84,8 @@ export class Supaglue {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.1.0";
-  private _genVersion = "2.17.8";
+  private _sdkVersion = "0.1.1";
+  private _genVersion = "2.17.9";
   private _globals: any;
 
   constructor(props?: SDKProps) {

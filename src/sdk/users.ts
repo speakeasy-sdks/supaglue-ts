@@ -72,10 +72,7 @@ export class Users {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.user = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.User
-            );
+            res.user = utils.objectToClass(httpRes?.data, shared.User);
           }
           break;
       }
@@ -127,11 +124,10 @@ export class Users {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.listUsers200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.ListUsers200ApplicationJSON
-              );
+            res.listUsers200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.ListUsers200ApplicationJSON
+            );
           }
           break;
       }

@@ -94,11 +94,10 @@ export class Leads {
       switch (true) {
         case httpRes?.status == 201:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.createLead201ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.CreateLead201ApplicationJSON
-              );
+            res.createLead201ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.CreateLead201ApplicationJSON
+            );
           }
           break;
       }
@@ -146,10 +145,7 @@ export class Leads {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.lead = utils.deserializeJSONResponse(
-              httpRes?.data,
-              shared.Lead
-            );
+            res.lead = utils.objectToClass(httpRes?.data, shared.Lead);
           }
           break;
       }
@@ -201,11 +197,10 @@ export class Leads {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.listLeads200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.ListLeads200ApplicationJSON
-              );
+            res.listLeads200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.ListLeads200ApplicationJSON
+            );
           }
           break;
       }
@@ -274,11 +269,10 @@ export class Leads {
       switch (true) {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateLead200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
-                httpRes?.data,
-                operations.UpdateLead200ApplicationJSON
-              );
+            res.updateLead200ApplicationJSONObject = utils.objectToClass(
+              httpRes?.data,
+              operations.UpdateLead200ApplicationJSON
+            );
           }
           break;
       }

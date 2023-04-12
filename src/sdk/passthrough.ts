@@ -97,7 +97,7 @@ export class Passthrough {
         case httpRes?.status == 200:
           if (utils.matchContentType(contentType, `application/json`)) {
             res.sendPassthroughRequest200ApplicationJSONObject =
-              utils.deserializeJSONResponse(
+              utils.objectToClass(
                 httpRes?.data,
                 operations.SendPassthroughRequest200ApplicationJSON
               );
