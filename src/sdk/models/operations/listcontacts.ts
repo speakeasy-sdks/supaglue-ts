@@ -12,7 +12,7 @@ export class ListContactsRequest extends SpeakeasyBase {
    * If provided, will only return objects created after this datetime
    */
   @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=created_after;dateTimeFormat=YYYY-MM-DDThh:mm:ss.sssZ",
+    data: "queryParam, style=form;explode=true;name=created_after",
   })
   createdAfter?: Date;
 
@@ -20,7 +20,7 @@ export class ListContactsRequest extends SpeakeasyBase {
    * If provided, will only return objects created before this datetime
    */
   @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=created_before;dateTimeFormat=YYYY-MM-DDThh:mm:ss.sssZ",
+    data: "queryParam, style=form;explode=true;name=created_before",
   })
   createdBefore?: Date;
 
@@ -52,7 +52,7 @@ export class ListContactsRequest extends SpeakeasyBase {
    * If provided, will only return objects modified after this datetime
    */
   @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=updated_after;dateTimeFormat=YYYY-MM-DDThh:mm:ss.sssZ",
+    data: "queryParam, style=form;explode=true;name=updated_after",
   })
   updatedAfter?: Date;
 
@@ -60,7 +60,7 @@ export class ListContactsRequest extends SpeakeasyBase {
    * If provided, will only return objects modified before this datetime
    */
   @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=updated_before;dateTimeFormat=YYYY-MM-DDThh:mm:ss.sssZ",
+    data: "queryParam, style=form;explode=true;name=updated_before",
   })
   updatedBefore?: Date;
 
