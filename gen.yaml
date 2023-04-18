@@ -2,14 +2,13 @@ configVersion: 1.0.0
 management:
   docChecksum: 38125a3e5e73c15ff7ebefa35d52460a
   docVersion: 0.6.0
-  speakeasyVersion: 1.20.0
-  generationVersion: 2.18.0
+  speakeasyVersion: 1.20.1
+  generationVersion: 2.18.1
 generation:
   telemetryEnabled: false
   sdkClassName: supaglue
-  sdkFlattening: false
   singleTagPerOp: true
 typescript:
-  version: 0.2.0
+  version: 0.2.1
   author: Supaglue
   packageName: '@speakeasy-sdks/supaglue'
