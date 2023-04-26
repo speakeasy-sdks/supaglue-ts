@@ -1,16 +1,10 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import {
-  CreateAccountRequest,
-  CreateAccountResponse
-} from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import {
-  PhoneNumberTypeEnum,
-  AddressTypeEnum,
-} from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-
-import { AxiosError } from "axios";
 import { Supaglue } from "@speakeasy-sdks/supaglue";
+import { CreateAccountRequest, CreateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AxiosError } from "axios";
+
 const sdk = new Supaglue({
   security: {
     apiKeyAuth: "YOUR_API_KEY_HERE",
@@ -77,7 +71,9 @@ const req: CreateAccountRequest = {
 };
 
 sdk.accounts.create(req).then((res: CreateAccountResponse | AxiosError) => {
-   // handle response
+  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+    // handle response
+  }
 });
 ```
 <!-- End SDK Example Usage -->

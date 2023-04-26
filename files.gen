@@ -65,4 +65,11 @@ src/sdk/models/shared/opportunity.ts
 src/sdk/models/shared/createupdateopportunity.ts
 src/sdk/models/shared/security.ts
 src/sdk/models/shared/index.ts
+docs/supaglue/README.md
+docs/accounts/README.md
+docs/contacts/README.md
+docs/leads/README.md
+docs/opportunities/README.md
+docs/passthrough/README.md
+docs/users/README.md
 USAGE.md
