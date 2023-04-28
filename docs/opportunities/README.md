@@ -20,9 +20,8 @@ Create opportunity
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { CreateOpportunityRequest, CreateOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { CreateOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -30,7 +29,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: CreateOpportunityRequest = {
+sdk.opportunities.create({
   requestBody: {
     model: {
       accountId: "64571bff-48ea-4469-9fa0-ee1a0bab38bd",
@@ -47,10 +46,8 @@ const req: CreateOpportunityRequest = {
   },
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.opportunities.create(req).then((res: CreateOpportunityResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateOpportunityResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -64,9 +61,8 @@ Get opportunity
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { GetOpportunityRequest, GetOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { GetOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -74,15 +70,13 @@ const sdk = new Supaglue({
   },
 });
 
-const req: GetOpportunityRequest = {
+sdk.opportunities.get({
   expand: "owner",
   opportunityId: "c9f58083-a370-47b5-ad02-99160ea20372",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.opportunities.get(req).then((res: GetOpportunityResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetOpportunityResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -96,9 +90,8 @@ Get a list of opportunities
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { ListOpportunitiesRequest, ListOpportunitiesResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { ListOpportunitiesResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -106,7 +99,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: ListOpportunitiesRequest = {
+sdk.opportunities.list({
   createdAfter: new Date("2023-02-23T00:00:00.000Z"),
   createdBefore: new Date("2023-02-23T00:00:00.000Z"),
   cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -116,10 +109,8 @@ const req: ListOpportunitiesRequest = {
   updatedBefore: new Date("2023-02-23T00:00:00.000Z"),
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.opportunities.list(req).then((res: ListOpportunitiesResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: ListOpportunitiesResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -134,12 +125,10 @@ Search Opportunities
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import {
-  SearchOpportunitiesRequest,
   SearchOpportunitiesRequestBodyFiltersAccountId1TypeEnum,
   SearchOpportunitiesResponse,
 } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -147,7 +136,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: SearchOpportunitiesRequest = {
+sdk.opportunities.search({
   requestBody: {
     filters: {
       accountId: {
@@ -160,10 +149,8 @@ const req: SearchOpportunitiesRequest = {
   pageSize: "3804695",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.opportunities.search(req).then((res: SearchOpportunitiesResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: SearchOpportunitiesResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -177,9 +164,8 @@ Update opportunity
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { UpdateOpportunityRequest, UpdateOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { UpdateOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -187,7 +173,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: UpdateOpportunityRequest = {
+sdk.opportunities.update({
   requestBody: {
     model: {
       accountId: "64571bff-48ea-4469-9fa0-ee1a0bab38bd",
@@ -208,10 +194,8 @@ const req: UpdateOpportunityRequest = {
   opportunityId: "c9f58083-a370-47b5-ad02-99160ea20372",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.opportunities.update(req).then((res: UpdateOpportunityResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: UpdateOpportunityResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

@@ -17,8 +17,7 @@ Get user
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { GetUserRequest, GetUserResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { GetUserResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 
 const sdk = new Supaglue({
   security: {
@@ -26,14 +25,12 @@ const sdk = new Supaglue({
   },
 });
 
-const req: GetUserRequest = {
+sdk.users.get({
   userId: "0258cbc6-6020-430a-848e-aafacbadf4ae",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.users.get(req).then((res: GetUserResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetUserResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -47,8 +44,7 @@ Get a list of users
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { ListUsersRequest, ListUsersResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { ListUsersResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 
 const sdk = new Supaglue({
   security: {
@@ -56,7 +52,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: ListUsersRequest = {
+sdk.users.list({
   createdAfter: new Date("2023-02-23T00:00:00.000Z"),
   createdBefore: new Date("2023-02-23T00:00:00.000Z"),
   cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -66,10 +62,8 @@ const req: ListUsersRequest = {
   updatedBefore: new Date("2023-02-23T00:00:00.000Z"),
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.users.list(req).then((res: ListUsersResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: ListUsersResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

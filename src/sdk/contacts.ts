@@ -37,7 +37,7 @@ export class Contacts {
   /**
    * Create contact
    */
-  create(
+  async create(
     req: operations.CreateContactRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateContactResponse> {
@@ -72,7 +72,8 @@ export class Contacts {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "post",
       headers: headers,
@@ -80,36 +81,36 @@ export class Contacts {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.CreateContactResponse =
-        new operations.CreateContactResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 201:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.createContact201ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.CreateContact201ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.CreateContactResponse =
+      new operations.CreateContactResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 201:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.createContact201ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.CreateContact201ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Get contact
    */
-  get(
+  async get(
     req: operations.GetContactRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetContactResponse> {
@@ -129,34 +130,35 @@ export class Contacts {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetContactResponse =
-        new operations.GetContactResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.contact = utils.objectToClass(httpRes?.data, shared.Contact);
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetContactResponse =
+      new operations.GetContactResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.contact = utils.objectToClass(httpRes?.data, shared.Contact);
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
@@ -165,7 +167,7 @@ export class Contacts {
    * @remarks
    * Get a list of contacts
    */
-  list(
+  async list(
     req: operations.ListContactsRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.ListContactsResponse> {
@@ -181,43 +183,44 @@ export class Contacts {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.ListContactsResponse =
-        new operations.ListContactsResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.listContacts200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.ListContacts200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.ListContactsResponse =
+      new operations.ListContactsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.listContacts200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.ListContacts200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Search contacts
    */
-  search(
+  async search(
     req: operations.SearchContactsRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.SearchContactsResponse> {
@@ -253,7 +256,8 @@ export class Contacts {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "post",
       headers: headers,
@@ -261,36 +265,36 @@ export class Contacts {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.SearchContactsResponse =
-        new operations.SearchContactsResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.searchContacts200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.SearchContacts200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.SearchContactsResponse =
+      new operations.SearchContactsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.searchContacts200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.SearchContacts200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Update contact
    */
-  update(
+  async update(
     req: operations.UpdateContactRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.UpdateContactResponse> {
@@ -329,7 +333,8 @@ export class Contacts {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "patch",
       headers: headers,
@@ -337,29 +342,29 @@ export class Contacts {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.UpdateContactResponse =
-        new operations.UpdateContactResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateContact200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.UpdateContact200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.UpdateContactResponse =
+      new operations.UpdateContactResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.updateContact200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.UpdateContact200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 }

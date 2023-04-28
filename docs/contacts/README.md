@@ -20,9 +20,8 @@ Create contact
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { CreateContactRequest, CreateContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { CreateContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -30,7 +29,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: CreateContactRequest = {
+sdk.contacts.create({
   requestBody: {
     model: {
       accountId: "64571bff-48ea-4469-9fa0-ee1a0bab38bd",
@@ -108,10 +107,8 @@ const req: CreateContactRequest = {
   },
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.contacts.create(req).then((res: CreateContactResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateContactResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -125,9 +122,8 @@ Get contact
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { GetContactRequest, GetContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { GetContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -135,15 +131,13 @@ const sdk = new Supaglue({
   },
 });
 
-const req: GetContactRequest = {
+sdk.contacts.get({
   contactId: "0258cbc6-6020-430a-848e-aafacbadf4ae",
   expand: "owner",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.contacts.get(req).then((res: GetContactResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetContactResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -157,9 +151,8 @@ Get a list of contacts
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { ListContactsRequest, ListContactsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { ListContactsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -167,7 +160,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: ListContactsRequest = {
+sdk.contacts.list({
   createdAfter: new Date("2023-02-23T00:00:00.000Z"),
   createdBefore: new Date("2023-02-23T00:00:00.000Z"),
   cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -177,10 +170,8 @@ const req: ListContactsRequest = {
   updatedBefore: new Date("2023-02-23T00:00:00.000Z"),
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.contacts.list(req).then((res: ListContactsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: ListContactsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -194,13 +185,8 @@ Search contacts
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import {
-  SearchContactsRequest,
-  SearchContactsRequestBodyFiltersEmailAddress1TypeEnum,
-  SearchContactsResponse,
-} from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { SearchContactsRequestBodyFiltersEmailAddress1TypeEnum, SearchContactsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -208,7 +194,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: SearchContactsRequest = {
+sdk.contacts.search({
   requestBody: {
     filters: {
       emailAddress: {
@@ -221,10 +207,8 @@ const req: SearchContactsRequest = {
   pageSize: "3804695",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.contacts.search(req).then((res: SearchContactsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: SearchContactsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -238,9 +222,8 @@ Update contact
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { UpdateContactRequest, UpdateContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { UpdateContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -248,7 +231,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: UpdateContactRequest = {
+sdk.contacts.update({
   requestBody: {
     model: {
       accountId: "64571bff-48ea-4469-9fa0-ee1a0bab38bd",
@@ -313,10 +296,8 @@ const req: UpdateContactRequest = {
   contactId: "0258cbc6-6020-430a-848e-aafacbadf4ae",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.contacts.update(req).then((res: UpdateContactResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: UpdateContactResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

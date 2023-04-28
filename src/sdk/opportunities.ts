@@ -37,7 +37,7 @@ export class Opportunities {
   /**
    * Create opportunity
    */
-  create(
+  async create(
     req: operations.CreateOpportunityRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateOpportunityResponse> {
@@ -72,7 +72,8 @@ export class Opportunities {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "post",
       headers: headers,
@@ -80,36 +81,36 @@ export class Opportunities {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.CreateOpportunityResponse =
-        new operations.CreateOpportunityResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 201:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.createOpportunity201ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.CreateOpportunity201ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.CreateOpportunityResponse =
+      new operations.CreateOpportunityResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 201:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.createOpportunity201ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.CreateOpportunity201ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Get opportunity
    */
-  get(
+  async get(
     req: operations.GetOpportunityRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetOpportunityResponse> {
@@ -129,37 +130,38 @@ export class Opportunities {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetOpportunityResponse =
-        new operations.GetOpportunityResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.opportunity = utils.objectToClass(
-              httpRes?.data,
-              shared.Opportunity
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetOpportunityResponse =
+      new operations.GetOpportunityResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.opportunity = utils.objectToClass(
+            httpRes?.data,
+            shared.Opportunity
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
@@ -168,7 +170,7 @@ export class Opportunities {
    * @remarks
    * Get a list of opportunities
    */
-  list(
+  async list(
     req: operations.ListOpportunitiesRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.ListOpportunitiesResponse> {
@@ -184,43 +186,44 @@ export class Opportunities {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.ListOpportunitiesResponse =
-        new operations.ListOpportunitiesResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.listOpportunities200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.ListOpportunities200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.ListOpportunitiesResponse =
+      new operations.ListOpportunitiesResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.listOpportunities200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.ListOpportunities200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Search Opportunities
    */
-  search(
+  async search(
     req: operations.SearchOpportunitiesRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.SearchOpportunitiesResponse> {
@@ -256,7 +259,8 @@ export class Opportunities {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "post",
       headers: headers,
@@ -264,37 +268,36 @@ export class Opportunities {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.SearchOpportunitiesResponse =
-        new operations.SearchOpportunitiesResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.searchOpportunities200ApplicationJSONObject =
-              utils.objectToClass(
-                httpRes?.data,
-                operations.SearchOpportunities200ApplicationJSON
-              );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.SearchOpportunitiesResponse =
+      new operations.SearchOpportunitiesResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.searchOpportunities200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.SearchOpportunities200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Update opportunity
    */
-  update(
+  async update(
     req: operations.UpdateOpportunityRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.UpdateOpportunityResponse> {
@@ -333,7 +336,8 @@ export class Opportunities {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "patch",
       headers: headers,
@@ -341,29 +345,29 @@ export class Opportunities {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.UpdateOpportunityResponse =
-        new operations.UpdateOpportunityResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateOpportunity200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.UpdateOpportunity200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.UpdateOpportunityResponse =
+      new operations.UpdateOpportunityResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.updateOpportunity200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.UpdateOpportunity200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 }

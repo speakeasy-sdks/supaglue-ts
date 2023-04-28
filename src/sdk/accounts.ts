@@ -37,7 +37,7 @@ export class Accounts {
   /**
    * Create account
    */
-  create(
+  async create(
     req: operations.CreateAccountRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.CreateAccountResponse> {
@@ -72,7 +72,8 @@ export class Accounts {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "post",
       headers: headers,
@@ -80,36 +81,36 @@ export class Accounts {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.CreateAccountResponse =
-        new operations.CreateAccountResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 201:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.createAccount201ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.CreateAccount201ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.CreateAccountResponse =
+      new operations.CreateAccountResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 201:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.createAccount201ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.CreateAccount201ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Get account
    */
-  get(
+  async get(
     req: operations.GetAccountRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetAccountResponse> {
@@ -129,34 +130,35 @@ export class Accounts {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetAccountResponse =
-        new operations.GetAccountResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.account = utils.objectToClass(httpRes?.data, shared.Account);
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.GetAccountResponse =
+      new operations.GetAccountResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.account = utils.objectToClass(httpRes?.data, shared.Account);
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
@@ -165,7 +167,7 @@ export class Accounts {
    * @remarks
    * Get a list of accounts
    */
-  list(
+  async list(
     req: operations.ListAccountsRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.ListAccountsResponse> {
@@ -181,43 +183,44 @@ export class Accounts {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.ListAccountsResponse =
-        new operations.ListAccountsResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.listAccounts200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.ListAccounts200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.ListAccountsResponse =
+      new operations.ListAccountsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.listAccounts200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.ListAccounts200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Search accounts
    */
-  search(
+  async search(
     req: operations.SearchAccountsRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.SearchAccountsResponse> {
@@ -253,7 +256,8 @@ export class Accounts {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "post",
       headers: headers,
@@ -261,36 +265,36 @@ export class Accounts {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.SearchAccountsResponse =
-        new operations.SearchAccountsResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.searchAccounts200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.SearchAccounts200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.SearchAccountsResponse =
+      new operations.SearchAccountsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.searchAccounts200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.SearchAccounts200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
    * Update account
    */
-  update(
+  async update(
     req: operations.UpdateAccountRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.UpdateAccountResponse> {
@@ -329,7 +333,8 @@ export class Accounts {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "patch",
       headers: headers,
@@ -337,29 +342,29 @@ export class Accounts {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.UpdateAccountResponse =
-        new operations.UpdateAccountResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.updateAccount200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.UpdateAccount200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.UpdateAccountResponse =
+      new operations.UpdateAccountResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.updateAccount200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.UpdateAccount200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 }

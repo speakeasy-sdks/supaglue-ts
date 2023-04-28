@@ -1,9 +1,8 @@
 <!-- Start SDK Example Usage -->
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { CreateAccountRequest, CreateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { CreateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -11,7 +10,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: CreateAccountRequest = {
+sdk.accounts.create({
   requestBody: {
     model: {
       addresses: [
@@ -68,10 +67,8 @@ const req: CreateAccountRequest = {
   },
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.accounts.create(req).then((res: CreateAccountResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateAccountResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

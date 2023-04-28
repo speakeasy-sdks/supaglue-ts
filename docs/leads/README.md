@@ -19,9 +19,8 @@ Create lead
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { CreateLeadRequest, CreateLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { CreateLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -29,7 +28,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: CreateLeadRequest = {
+sdk.leads.create({
   requestBody: {
     model: {
       addresses: [
@@ -93,10 +92,8 @@ const req: CreateLeadRequest = {
   },
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.leads.create(req).then((res: CreateLeadResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateLeadResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -110,9 +107,8 @@ Get lead
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { GetLeadRequest, GetLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { GetLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -120,15 +116,13 @@ const sdk = new Supaglue({
   },
 });
 
-const req: GetLeadRequest = {
+sdk.leads.get({
   expand: "owner",
   leadId: "82de27cb-6f8c-4278-b783-82d1d916eddc",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.leads.get(req).then((res: GetLeadResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetLeadResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -142,9 +136,8 @@ Get a list of leads
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { ListLeadsRequest, ListLeadsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { ListLeadsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -152,7 +145,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: ListLeadsRequest = {
+sdk.leads.list({
   createdAfter: new Date("2023-02-23T00:00:00.000Z"),
   createdBefore: new Date("2023-02-23T00:00:00.000Z"),
   cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -162,10 +155,8 @@ const req: ListLeadsRequest = {
   updatedBefore: new Date("2023-02-23T00:00:00.000Z"),
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.leads.list(req).then((res: ListLeadsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: ListLeadsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -179,9 +170,8 @@ Update lead
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { UpdateLeadRequest, UpdateLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { UpdateLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -189,7 +179,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: UpdateLeadRequest = {
+sdk.leads.update({
   requestBody: {
     model: {
       addresses: [
@@ -231,10 +221,8 @@ const req: UpdateLeadRequest = {
   leadId: "82de27cb-6f8c-4278-b783-82d1d916eddc",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.leads.update(req).then((res: UpdateLeadResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: UpdateLeadResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

@@ -39,7 +39,7 @@ export class Passthrough {
    * @remarks
    * Send request directly to a provider
    */
-  send(
+  async send(
     req: operations.SendPassthroughRequestRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.SendPassthroughRequestResponse> {
@@ -74,7 +74,8 @@ export class Passthrough {
     if (reqBody == null || Object.keys(reqBody).length === 0)
       throw new Error("request body is required");
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "post",
       headers: headers,
@@ -82,30 +83,30 @@ export class Passthrough {
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.SendPassthroughRequestResponse =
-        new operations.SendPassthroughRequestResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.sendPassthroughRequest200ApplicationJSONObject =
-              utils.objectToClass(
-                httpRes?.data,
-                operations.SendPassthroughRequest200ApplicationJSON
-              );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
-    });
+    const res: operations.SendPassthroughRequestResponse =
+      new operations.SendPassthroughRequestResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.sendPassthroughRequest200ApplicationJSONObject =
+            utils.objectToClass(
+              httpRes?.data,
+              operations.SendPassthroughRequest200ApplicationJSON
+            );
+        }
+        break;
+    }
+
+    return res;
   }
 }

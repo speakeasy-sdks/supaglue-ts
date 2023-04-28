@@ -37,7 +37,7 @@ export class Users {
   /**
    * Get user
    */
-  get(
+  async get(
     req: operations.GetUserRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.GetUserResponse> {
@@ -52,33 +52,34 @@ export class Users {
 
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.GetUserResponse = new operations.GetUserResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.user = utils.objectToClass(httpRes?.data, shared.User);
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
+    const res: operations.GetUserResponse = new operations.GetUserResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
     });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.user = utils.objectToClass(httpRes?.data, shared.User);
+        }
+        break;
+    }
+
+    return res;
   }
 
   /**
@@ -87,7 +88,7 @@ export class Users {
    * @remarks
    * Get a list of users
    */
-  list(
+  async list(
     req: operations.ListUsersRequest,
     config?: AxiosRequestConfig
   ): Promise<operations.ListUsersResponse> {
@@ -103,36 +104,36 @@ export class Users {
     const headers = { ...utils.getHeadersFromRequest(req), ...config?.headers };
     const queryParams: string = utils.serializeQueryParams(req);
 
-    const r = client.request({
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
       url: url + queryParams,
       method: "get",
       headers: headers,
       ...config,
     });
 
-    return r.then((httpRes: AxiosResponse) => {
-      const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-      if (httpRes?.status == null)
-        throw new Error(`status code not found in response: ${httpRes}`);
-      const res: operations.ListUsersResponse =
-        new operations.ListUsersResponse({
-          statusCode: httpRes.status,
-          contentType: contentType,
-          rawResponse: httpRes,
-        });
-      switch (true) {
-        case httpRes?.status == 200:
-          if (utils.matchContentType(contentType, `application/json`)) {
-            res.listUsers200ApplicationJSONObject = utils.objectToClass(
-              httpRes?.data,
-              operations.ListUsers200ApplicationJSON
-            );
-          }
-          break;
-      }
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
 
-      return res;
+    const res: operations.ListUsersResponse = new operations.ListUsersResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
     });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.listUsers200ApplicationJSONObject = utils.objectToClass(
+            httpRes?.data,
+            operations.ListUsers200ApplicationJSON
+          );
+        }
+        break;
+    }
+
+    return res;
   }
 }

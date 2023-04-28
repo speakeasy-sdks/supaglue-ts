@@ -20,9 +20,8 @@ Create account
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { CreateAccountRequest, CreateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { CreateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -30,7 +29,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: CreateAccountRequest = {
+sdk.accounts.create({
   requestBody: {
     model: {
       addresses: [
@@ -99,10 +98,8 @@ const req: CreateAccountRequest = {
   },
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.accounts.create(req).then((res: CreateAccountResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: CreateAccountResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -116,9 +113,8 @@ Get account
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { GetAccountRequest, GetAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { GetAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -126,15 +122,13 @@ const sdk = new Supaglue({
   },
 });
 
-const req: GetAccountRequest = {
+sdk.accounts.get({
   accountId: "0258cbc6-6020-430a-848e-aafacbadf4ae",
   expand: "owner",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.accounts.get(req).then((res: GetAccountResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: GetAccountResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -148,9 +142,8 @@ Get a list of accounts
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { ListAccountsRequest, ListAccountsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { ListAccountsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -158,7 +151,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: ListAccountsRequest = {
+sdk.accounts.list({
   createdAfter: new Date("2023-02-23T00:00:00.000Z"),
   createdBefore: new Date("2023-02-23T00:00:00.000Z"),
   cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
@@ -168,10 +161,8 @@ const req: ListAccountsRequest = {
   updatedBefore: new Date("2023-02-23T00:00:00.000Z"),
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.accounts.list(req).then((res: ListAccountsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: ListAccountsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -185,13 +176,8 @@ Search accounts
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import {
-  SearchAccountsRequest,
-  SearchAccountsRequestBodyFiltersWebsite1TypeEnum,
-  SearchAccountsResponse,
-} from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { SearchAccountsRequestBodyFiltersWebsite1TypeEnum, SearchAccountsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -199,7 +185,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: SearchAccountsRequest = {
+sdk.accounts.search({
   requestBody: {
     filters: {
       website: {
@@ -212,10 +198,8 @@ const req: SearchAccountsRequest = {
   pageSize: "3804695",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.accounts.search(req).then((res: SearchAccountsResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: SearchAccountsResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
@@ -229,9 +213,8 @@ Update account
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { UpdateAccountRequest, UpdateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { UpdateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
-import { AxiosError } from "axios";
 
 const sdk = new Supaglue({
   security: {
@@ -239,7 +222,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: UpdateAccountRequest = {
+sdk.accounts.update({
   requestBody: {
     model: {
       addresses: [
@@ -294,10 +277,8 @@ const req: UpdateAccountRequest = {
   accountId: "0258cbc6-6020-430a-848e-aafacbadf4ae",
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.accounts.update(req).then((res: UpdateAccountResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: UpdateAccountResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });

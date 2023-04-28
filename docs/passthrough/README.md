@@ -16,12 +16,7 @@ Send request directly to a provider
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import {
-  SendPassthroughRequestRequest,
-  SendPassthroughRequestRequestBodyMethodEnum,
-  SendPassthroughRequestResponse,
-} from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AxiosError } from "axios";
+import { SendPassthroughRequestRequestBodyMethodEnum, SendPassthroughRequestResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 
 const sdk = new Supaglue({
   security: {
@@ -29,7 +24,7 @@ const sdk = new Supaglue({
   },
 });
 
-const req: SendPassthroughRequestRequest = {
+sdk.passthrough.send({
   requestBody: {
     body: "numquam",
     headers: {
@@ -45,10 +40,8 @@ const req: SendPassthroughRequestRequest = {
   },
   xCustomerId: "my-customer-1",
   xProviderName: "salesforce",
-};
-
-sdk.passthrough.send(req).then((res: SendPassthroughRequestResponse | AxiosError) => {
-  if (res instanceof UsageExamplePostResponse && res.statusCode == 200) {
+}).then((res: SendPassthroughRequestResponse) => {
+  if (res.statusCode == 200) {
     // handle response
   }
 });
