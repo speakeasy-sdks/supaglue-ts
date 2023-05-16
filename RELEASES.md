@@ -197,3 +197,11 @@ Based on:
 - Speakeasy CLI 1.31.1 (2.27.0) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [NPM v0.10.0] https://www.npmjs.com/package/@speakeasy-sdks/supaglue/v/0.10.0 - .
+
+## 2023-05-16 00:51:19
+### Changes
+Based on:
+- OpenAPI Doc 0.6.0 ./openapi/openapi.yaml
+- Speakeasy CLI 1.32.0 (2.28.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [NPM v0.11.0] https://www.npmjs.com/package/@speakeasy-sdks/supaglue/v/0.11.0 - .
