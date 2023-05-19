@@ -4,7 +4,7 @@
 
 export * from "./account";
 export * from "./addresses";
-export * from "./addresstypeenum";
+export * from "./addresstype";
 export * from "./contact";
 export * from "./createupdateaccount";
 export * from "./createupdatecontact";
@@ -16,7 +16,7 @@ export * from "./lead";
 export * from "./logs";
 export * from "./opportunity";
 export * from "./phonenumbers";
-export * from "./phonenumbertypeenum";
+export * from "./phonenumbertype";
 export * from "./security";
 export * from "./user";
 export * from "./warnings";

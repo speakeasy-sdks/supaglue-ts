@@ -20,7 +20,7 @@ Create lead
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { CreateLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -33,7 +33,7 @@ sdk.leads.create({
     model: {
       addresses: [
         {
-          addressType: AddressTypeEnum.Other,
+          addressType: AddressType.Other,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -42,7 +42,7 @@ sdk.leads.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Mailing,
+          addressType: AddressType.Mailing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -51,7 +51,7 @@ sdk.leads.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Billing,
+          addressType: AddressType.Billing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -68,19 +68,19 @@ sdk.leads.create({
       emailAddresses: [
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Work,
+          emailAddressType: EmailAddressesEmailAddressType.Work,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Work,
+          emailAddressType: EmailAddressesEmailAddressType.Work,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Work,
+          emailAddressType: EmailAddressesEmailAddressType.Work,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Primary,
+          emailAddressType: EmailAddressesEmailAddressType.Primary,
         },
       ],
       firstName: "George",
@@ -108,7 +108,7 @@ Get lead
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { GetLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -137,7 +137,7 @@ Get a list of leads
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { ListLeadsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -171,7 +171,7 @@ Update lead
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { UpdateLeadResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -184,7 +184,7 @@ sdk.leads.update({
     model: {
       addresses: [
         {
-          addressType: AddressTypeEnum.Mailing,
+          addressType: AddressType.Mailing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -200,15 +200,15 @@ sdk.leads.update({
       emailAddresses: [
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Primary,
+          emailAddressType: EmailAddressesEmailAddressType.Primary,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Primary,
+          emailAddressType: EmailAddressesEmailAddressType.Primary,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Work,
+          emailAddressType: EmailAddressesEmailAddressType.Work,
         },
       ],
       firstName: "George",

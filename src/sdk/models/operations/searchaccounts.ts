@@ -7,14 +7,14 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
-export enum SearchAccountsRequestBodyFiltersWebsite1TypeEnum {
+export enum SearchAccountsRequestBodyFiltersWebsite1Type {
   Equals = "equals",
 }
 
 export class SearchAccountsRequestBodyFiltersWebsite1 extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "type" })
-  type: SearchAccountsRequestBodyFiltersWebsite1TypeEnum;
+  type: SearchAccountsRequestBodyFiltersWebsite1Type;
 
   @SpeakeasyMetadata()
   @Expose({ name: "value" })

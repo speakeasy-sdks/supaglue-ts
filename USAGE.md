@@ -2,7 +2,7 @@
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { CreateAccountResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -15,7 +15,7 @@ sdk.accounts.create({
     model: {
       addresses: [
         {
-          addressType: AddressTypeEnum.Other,
+          addressType: AddressType.Other,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -24,7 +24,7 @@ sdk.accounts.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Billing,
+          addressType: AddressType.Billing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -33,7 +33,7 @@ sdk.accounts.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Shipping,
+          addressType: AddressType.Shipping,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -55,11 +55,11 @@ sdk.accounts.create({
       phoneNumbers: [
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Mobile,
+          phoneNumberType: PhoneNumberType.Mobile,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Primary,
+          phoneNumberType: PhoneNumberType.Primary,
         },
       ],
       website: "https://supaglue.com/",

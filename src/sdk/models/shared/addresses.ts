@@ -3,13 +3,13 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { AddressTypeEnum } from "./addresstypeenum";
+import { AddressType } from "./addresstype";
 import { Expose } from "class-transformer";
 
 export class Addresses extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "address_type" })
-  addressType: AddressTypeEnum;
+  addressType: AddressType;
 
   @SpeakeasyMetadata()
   @Expose({ name: "city" })

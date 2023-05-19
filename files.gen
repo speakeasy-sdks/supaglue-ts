@@ -49,10 +49,10 @@ src/sdk/models/operations/index.ts
 src/sdk/models/shared/warnings.ts
 src/sdk/models/shared/account.ts
 src/sdk/models/shared/phonenumbers.ts
-src/sdk/models/shared/phonenumbertypeenum.ts
+src/sdk/models/shared/phonenumbertype.ts
 src/sdk/models/shared/user.ts
 src/sdk/models/shared/addresses.ts
-src/sdk/models/shared/addresstypeenum.ts
+src/sdk/models/shared/addresstype.ts
 src/sdk/models/shared/logs.ts
 src/sdk/models/shared/errors.ts
 src/sdk/models/shared/createupdateaccount.ts

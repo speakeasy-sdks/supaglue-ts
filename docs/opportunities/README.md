@@ -21,7 +21,7 @@ Create opportunity
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { CreateOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -62,7 +62,7 @@ Get opportunity
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { GetOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -91,7 +91,7 @@ Get a list of opportunities
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { ListOpportunitiesResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -124,11 +124,8 @@ Search Opportunities
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import {
-  SearchOpportunitiesRequestBodyFiltersAccountId1TypeEnum,
-  SearchOpportunitiesResponse,
-} from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { SearchOpportunitiesRequestBodyFiltersAccountId1Type, SearchOpportunitiesResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -140,7 +137,7 @@ sdk.opportunities.search({
   requestBody: {
     filters: {
       accountId: {
-        type: SearchOpportunitiesRequestBodyFiltersAccountId1TypeEnum.Equals,
+        type: SearchOpportunitiesRequestBodyFiltersAccountId1Type.Equals,
         value: "doloribus",
       },
     },
@@ -165,7 +162,7 @@ Update opportunity
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { UpdateOpportunityResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {

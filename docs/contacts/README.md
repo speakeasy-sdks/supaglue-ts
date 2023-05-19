@@ -21,7 +21,7 @@ Create contact
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { CreateContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -35,7 +35,7 @@ sdk.contacts.create({
       accountId: "64571bff-48ea-4469-9fa0-ee1a0bab38bd",
       addresses: [
         {
-          addressType: AddressTypeEnum.Other,
+          addressType: AddressType.Other,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -44,7 +44,7 @@ sdk.contacts.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Billing,
+          addressType: AddressType.Billing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -53,7 +53,7 @@ sdk.contacts.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Shipping,
+          addressType: AddressType.Shipping,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -62,7 +62,7 @@ sdk.contacts.create({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Other,
+          addressType: AddressType.Other,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -79,7 +79,7 @@ sdk.contacts.create({
       emailAddresses: [
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Work,
+          emailAddressType: EmailAddressesEmailAddressType.Work,
         },
       ],
       firstName: "George",
@@ -88,19 +88,19 @@ sdk.contacts.create({
       phoneNumbers: [
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Fax,
+          phoneNumberType: PhoneNumberType.Fax,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Mobile,
+          phoneNumberType: PhoneNumberType.Mobile,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Primary,
+          phoneNumberType: PhoneNumberType.Primary,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Mobile,
+          phoneNumberType: PhoneNumberType.Mobile,
         },
       ],
     },
@@ -123,7 +123,7 @@ Get contact
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { GetContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -152,7 +152,7 @@ Get a list of contacts
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { ListContactsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -185,8 +185,8 @@ Search contacts
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { SearchContactsRequestBodyFiltersEmailAddress1TypeEnum, SearchContactsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { SearchContactsRequestBodyFiltersEmailAddress1Type, SearchContactsResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -198,7 +198,7 @@ sdk.contacts.search({
   requestBody: {
     filters: {
       emailAddress: {
-        type: SearchContactsRequestBodyFiltersEmailAddress1TypeEnum.Equals,
+        type: SearchContactsRequestBodyFiltersEmailAddress1Type.Equals,
         value: "molestiae",
       },
     },
@@ -223,7 +223,7 @@ Update contact
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
 import { UpdateContactResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
-import { AddressTypeEnum, EmailAddressesEmailAddressTypeEnum, PhoneNumberTypeEnum } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
+import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/models/shared";
 
 const sdk = new Supaglue({
   security: {
@@ -237,7 +237,7 @@ sdk.contacts.update({
       accountId: "64571bff-48ea-4469-9fa0-ee1a0bab38bd",
       addresses: [
         {
-          addressType: AddressTypeEnum.Primary,
+          addressType: AddressType.Primary,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -246,7 +246,7 @@ sdk.contacts.update({
           street2: "null",
         },
         {
-          addressType: AddressTypeEnum.Billing,
+          addressType: AddressType.Billing,
           city: "San Francisco",
           country: "USA",
           postalCode: "94107",
@@ -263,15 +263,15 @@ sdk.contacts.update({
       emailAddresses: [
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Primary,
+          emailAddressType: EmailAddressesEmailAddressType.Primary,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Work,
+          emailAddressType: EmailAddressesEmailAddressType.Work,
         },
         {
           emailAddress: "hello@supaglue.com",
-          emailAddressType: EmailAddressesEmailAddressTypeEnum.Primary,
+          emailAddressType: EmailAddressesEmailAddressType.Primary,
         },
       ],
       firstName: "George",
@@ -280,15 +280,15 @@ sdk.contacts.update({
       phoneNumbers: [
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Mobile,
+          phoneNumberType: PhoneNumberType.Mobile,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Fax,
+          phoneNumberType: PhoneNumberType.Fax,
         },
         {
           phoneNumber: "+14151234567",
-          phoneNumberType: PhoneNumberTypeEnum.Fax,
+          phoneNumberType: PhoneNumberType.Fax,
         },
       ],
     },

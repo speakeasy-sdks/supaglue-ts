@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AxiosResponse } from "axios";
 import { Expose } from "class-transformer";
 
-export enum SendPassthroughRequestRequestBodyMethodEnum {
+export enum SendPassthroughRequestRequestBodyMethod {
   Get = "GET",
   Post = "POST",
   Put = "PUT",
@@ -31,7 +31,7 @@ export class SendPassthroughRequestRequestBody extends SpeakeasyBase {
 
   @SpeakeasyMetadata()
   @Expose({ name: "method" })
-  method: SendPassthroughRequestRequestBodyMethodEnum;
+  method: SendPassthroughRequestRequestBodyMethod;
 
   /**
    * The path to send the request to (do not pass the domain)

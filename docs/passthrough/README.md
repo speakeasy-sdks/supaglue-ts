@@ -16,7 +16,7 @@ Send request directly to a provider
 
 ```typescript
 import { Supaglue } from "@speakeasy-sdks/supaglue";
-import { SendPassthroughRequestRequestBodyMethodEnum, SendPassthroughRequestResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
+import { SendPassthroughRequestRequestBodyMethod, SendPassthroughRequestResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operations";
 
 const sdk = new Supaglue({
   security: {
@@ -31,7 +31,7 @@ sdk.passthrough.send({
       "quam": "molestiae",
       "velit": "error",
     },
-    method: SendPassthroughRequestRequestBodyMethodEnum.Get,
+    method: SendPassthroughRequestRequestBodyMethod.Get,
     path: "quia",
     query: {
       "vitae": "laborum",
