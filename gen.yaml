@@ -9,7 +9,7 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 typescript:
-  version: 0.15.2
+  version: 0.15.3
   author: Supaglue
   maxMethodParams: 0
   packageName: '@speakeasy-sdks/supaglue'

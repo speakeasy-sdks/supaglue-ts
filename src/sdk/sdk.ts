@@ -84,7 +84,7 @@ export class Supaglue {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "0.15.2";
+  private _sdkVersion = "0.15.3";
   private _genVersion = "2.32.2";
   private _globals: any;
 
