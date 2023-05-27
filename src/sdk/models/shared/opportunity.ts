@@ -11,69 +11,69 @@ import { Expose, Transform, Type } from "class-transformer";
  * Opportunity
  */
 export class Opportunity extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "account" })
-  @Type(() => Account)
-  account?: Account;
+    @SpeakeasyMetadata()
+    @Expose({ name: "account" })
+    @Type(() => Account)
+    account?: Account;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "account_id" })
-  accountId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "account_id" })
+    accountId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "amount" })
-  amount: number;
+    @SpeakeasyMetadata()
+    @Expose({ name: "amount" })
+    amount: number;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "close_date" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  closeDate?: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "close_date" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    closeDate?: Date;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "created_at" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  createdAt: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "created_at" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    createdAt: Date;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "description" })
-  description: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "description" })
+    description: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "last_activity_at" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  lastActivityAt: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "last_activity_at" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    lastActivityAt: Date;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "owner" })
-  @Type(() => User)
-  owner?: User;
+    @SpeakeasyMetadata()
+    @Expose({ name: "owner" })
+    @Type(() => User)
+    owner?: User;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "owner_id" })
-  ownerId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "owner_id" })
+    ownerId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "remote_id" })
-  remoteId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "remote_id" })
+    remoteId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "stage" })
-  stage: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "stage" })
+    stage: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "status" })
-  status: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "status" })
+    status: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "updated_at" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  updatedAt: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "updated_at" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    updatedAt: Date;
 }

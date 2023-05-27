@@ -3,9 +3,9 @@
  */
 
 export enum AddressType {
-  Primary = "primary",
-  Mailing = "mailing",
-  Other = "other",
-  Billing = "billing",
-  Shipping = "shipping",
+    Primary = "primary",
+    Mailing = "mailing",
+    Other = "other",
+    Billing = "billing",
+    Shipping = "shipping",
 }

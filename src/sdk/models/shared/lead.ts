@@ -15,88 +15,88 @@ import { Expose, Transform, Type } from "class-transformer";
  * Lead
  */
 export class Lead extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: Addresses })
-  @Expose({ name: "addresses" })
-  @Type(() => Addresses)
-  addresses: Addresses[];
+    @SpeakeasyMetadata({ elemType: Addresses })
+    @Expose({ name: "addresses" })
+    @Type(() => Addresses)
+    addresses: Addresses[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "company" })
-  company: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "company" })
+    company: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "converted_account" })
-  @Type(() => Account)
-  convertedAccount?: Account;
+    @SpeakeasyMetadata()
+    @Expose({ name: "converted_account" })
+    @Type(() => Account)
+    convertedAccount?: Account;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "converted_account_id" })
-  convertedAccountId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "converted_account_id" })
+    convertedAccountId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "converted_contact" })
-  @Type(() => Contact)
-  convertedContact?: Contact;
+    @SpeakeasyMetadata()
+    @Expose({ name: "converted_contact" })
+    @Type(() => Contact)
+    convertedContact?: Contact;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "converted_contact_id" })
-  convertedContactId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "converted_contact_id" })
+    convertedContactId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "converted_date" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  convertedDate: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "converted_date" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    convertedDate: Date;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "created_at" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  createdAt: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "created_at" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    createdAt: Date;
 
-  @SpeakeasyMetadata({ elemType: EmailAddresses })
-  @Expose({ name: "email_addresses" })
-  @Type(() => EmailAddresses)
-  emailAddresses?: EmailAddresses[];
+    @SpeakeasyMetadata({ elemType: EmailAddresses })
+    @Expose({ name: "email_addresses" })
+    @Type(() => EmailAddresses)
+    emailAddresses?: EmailAddresses[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "first_name" })
-  firstName?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "first_name" })
+    firstName?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "id" })
-  id: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "id" })
+    id: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "last_name" })
-  lastName: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "last_name" })
+    lastName: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "lead_source" })
-  leadSource: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "lead_source" })
+    leadSource: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "owner" })
-  @Type(() => User)
-  owner?: User;
+    @SpeakeasyMetadata()
+    @Expose({ name: "owner" })
+    @Type(() => User)
+    owner?: User;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "owner_id" })
-  ownerId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "owner_id" })
+    ownerId: string;
 
-  @SpeakeasyMetadata({ elemType: PhoneNumbers })
-  @Expose({ name: "phone_numbers" })
-  @Type(() => PhoneNumbers)
-  phoneNumbers: PhoneNumbers[];
+    @SpeakeasyMetadata({ elemType: PhoneNumbers })
+    @Expose({ name: "phone_numbers" })
+    @Type(() => PhoneNumbers)
+    phoneNumbers: PhoneNumbers[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "remote_id" })
-  remoteId: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "remote_id" })
+    remoteId: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "title" })
-  title: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "title" })
+    title: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "updated_at" })
-  @Transform(({ value }) => new Date(value), { toClassOnly: true })
-  updatedAt: Date;
+    @SpeakeasyMetadata()
+    @Expose({ name: "updated_at" })
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
+    updatedAt: Date;
 }

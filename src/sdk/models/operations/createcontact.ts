@@ -8,71 +8,67 @@ import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
 export class CreateContactRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateContact)
-  model: shared.CreateUpdateContact;
+    @SpeakeasyMetadata()
+    @Expose({ name: "model" })
+    @Type(() => shared.CreateUpdateContact)
+    model: shared.CreateUpdateContact;
 }
 
 export class CreateContactRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody: CreateContactRequestBody;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody: CreateContactRequestBody;
 
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
+    /**
+     * The customer ID that uniquely identifies the customer in your application
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-customer-id" })
+    xCustomerId: string;
 
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
+    /**
+     * The provider name
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-provider-name" })
+    xProviderName: string;
 }
 
 /**
  * Contact created
  */
 export class CreateContact201ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: shared.Errors })
-  @Expose({ name: "errors" })
-  @Type(() => shared.Errors)
-  errors?: shared.Errors[];
+    @SpeakeasyMetadata({ elemType: shared.Errors })
+    @Expose({ name: "errors" })
+    @Type(() => shared.Errors)
+    errors?: shared.Errors[];
 
-  @SpeakeasyMetadata({ elemType: shared.Logs })
-  @Expose({ name: "logs" })
-  @Type(() => shared.Logs)
-  logs?: shared.Logs[];
+    @SpeakeasyMetadata({ elemType: shared.Logs })
+    @Expose({ name: "logs" })
+    @Type(() => shared.Logs)
+    logs?: shared.Logs[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.Contact)
-  model?: shared.Contact;
+    @SpeakeasyMetadata()
+    @Expose({ name: "model" })
+    @Type(() => shared.Contact)
+    model?: shared.Contact;
 
-  @SpeakeasyMetadata({ elemType: shared.Warnings })
-  @Expose({ name: "warnings" })
-  @Type(() => shared.Warnings)
-  warnings?: shared.Warnings[];
+    @SpeakeasyMetadata({ elemType: shared.Warnings })
+    @Expose({ name: "warnings" })
+    @Type(() => shared.Warnings)
+    warnings?: shared.Warnings[];
 }
 
 export class CreateContactResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Contact created
-   */
-  @SpeakeasyMetadata()
-  createContact201ApplicationJSONObject?: CreateContact201ApplicationJSON;
+    /**
+     * Contact created
+     */
+    @SpeakeasyMetadata()
+    createContact201ApplicationJSONObject?: CreateContact201ApplicationJSON;
 }

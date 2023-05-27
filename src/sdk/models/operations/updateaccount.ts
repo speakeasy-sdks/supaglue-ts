@@ -8,76 +8,70 @@ import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
 export class UpdateAccountRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateAccount)
-  model: shared.CreateUpdateAccount;
+    @SpeakeasyMetadata()
+    @Expose({ name: "model" })
+    @Type(() => shared.CreateUpdateAccount)
+    model: shared.CreateUpdateAccount;
 }
 
 export class UpdateAccountRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody: UpdateAccountRequestBody;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody: UpdateAccountRequestBody;
 
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=account_id",
-  })
-  accountId: string;
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=account_id" })
+    accountId: string;
 
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
+    /**
+     * The customer ID that uniquely identifies the customer in your application
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-customer-id" })
+    xCustomerId: string;
 
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
+    /**
+     * The provider name
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-provider-name" })
+    xProviderName: string;
 }
 
 /**
  * Account updated
  */
 export class UpdateAccount200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: shared.Errors })
-  @Expose({ name: "errors" })
-  @Type(() => shared.Errors)
-  errors?: shared.Errors[];
+    @SpeakeasyMetadata({ elemType: shared.Errors })
+    @Expose({ name: "errors" })
+    @Type(() => shared.Errors)
+    errors?: shared.Errors[];
 
-  @SpeakeasyMetadata({ elemType: shared.Logs })
-  @Expose({ name: "logs" })
-  @Type(() => shared.Logs)
-  logs?: shared.Logs[];
+    @SpeakeasyMetadata({ elemType: shared.Logs })
+    @Expose({ name: "logs" })
+    @Type(() => shared.Logs)
+    logs?: shared.Logs[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.Account)
-  model?: shared.Account;
+    @SpeakeasyMetadata()
+    @Expose({ name: "model" })
+    @Type(() => shared.Account)
+    model?: shared.Account;
 
-  @SpeakeasyMetadata({ elemType: shared.Warnings })
-  @Expose({ name: "warnings" })
-  @Type(() => shared.Warnings)
-  warnings?: shared.Warnings[];
+    @SpeakeasyMetadata({ elemType: shared.Warnings })
+    @Expose({ name: "warnings" })
+    @Type(() => shared.Warnings)
+    warnings?: shared.Warnings[];
 }
 
 export class UpdateAccountResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Account updated
-   */
-  @SpeakeasyMetadata()
-  updateAccount200ApplicationJSONObject?: UpdateAccount200ApplicationJSON;
+    /**
+     * Account updated
+     */
+    @SpeakeasyMetadata()
+    updateAccount200ApplicationJSONObject?: UpdateAccount200ApplicationJSON;
 }

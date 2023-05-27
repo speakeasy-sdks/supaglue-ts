@@ -7,49 +7,41 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetLeadRequest extends SpeakeasyBase {
-  /**
-   * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=expand",
-  })
-  expand?: string;
+    /**
+     * Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=expand" })
+    expand?: string;
 
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=lead_id",
-  })
-  leadId: string;
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=lead_id" })
+    leadId: string;
 
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
+    /**
+     * The customer ID that uniquely identifies the customer in your application
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-customer-id" })
+    xCustomerId: string;
 
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
+    /**
+     * The provider name
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-provider-name" })
+    xProviderName: string;
 }
 
 export class GetLeadResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Lead
-   */
-  @SpeakeasyMetadata()
-  lead?: shared.Lead;
+    /**
+     * Lead
+     */
+    @SpeakeasyMetadata()
+    lead?: shared.Lead;
 }

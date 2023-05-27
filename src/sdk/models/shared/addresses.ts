@@ -7,31 +7,31 @@ import { AddressType } from "./addresstype";
 import { Expose } from "class-transformer";
 
 export class Addresses extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "address_type" })
-  addressType: AddressType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "address_type" })
+    addressType: AddressType;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "city" })
-  city: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "city" })
+    city: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "country" })
-  country: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "country" })
+    country: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "postal_code" })
-  postalCode: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "postal_code" })
+    postalCode: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "state" })
-  state: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "state" })
+    state: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "street1" })
-  street1: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "street1" })
+    street1: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "street2" })
-  street2: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "street2" })
+    street2: string;
 }

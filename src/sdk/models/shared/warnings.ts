@@ -6,26 +6,26 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
 export class WarningsSource extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "pointer" })
-  pointer?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "pointer" })
+    pointer?: string;
 }
 
 export class Warnings extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "detail" })
-  detail?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "detail" })
+    detail?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "problem_type" })
-  problemType?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "problem_type" })
+    problemType?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "source" })
-  @Type(() => WarningsSource)
-  source?: WarningsSource;
+    @SpeakeasyMetadata()
+    @Expose({ name: "source" })
+    @Type(() => WarningsSource)
+    source?: WarningsSource;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "title" })
-  title?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "title" })
+    title?: string;
 }

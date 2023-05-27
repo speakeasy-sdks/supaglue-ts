@@ -6,16 +6,16 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
 export enum EmailAddressesEmailAddressType {
-  Primary = "primary",
-  Work = "work",
+    Primary = "primary",
+    Work = "work",
 }
 
 export class EmailAddresses extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "email_address" })
-  emailAddress: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "email_address" })
+    emailAddress: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "email_address_type" })
-  emailAddressType: EmailAddressesEmailAddressType;
+    @SpeakeasyMetadata()
+    @Expose({ name: "email_address_type" })
+    emailAddressType: EmailAddressesEmailAddressType;
 }

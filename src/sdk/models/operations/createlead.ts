@@ -8,71 +8,67 @@ import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
 export class CreateLeadRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.CreateUpdateLead)
-  model: shared.CreateUpdateLead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "model" })
+    @Type(() => shared.CreateUpdateLead)
+    model: shared.CreateUpdateLead;
 }
 
 export class CreateLeadRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody: CreateLeadRequestBody;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody: CreateLeadRequestBody;
 
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
+    /**
+     * The customer ID that uniquely identifies the customer in your application
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-customer-id" })
+    xCustomerId: string;
 
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
+    /**
+     * The provider name
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-provider-name" })
+    xProviderName: string;
 }
 
 /**
  * Lead created
  */
 export class CreateLead201ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: shared.Errors })
-  @Expose({ name: "errors" })
-  @Type(() => shared.Errors)
-  errors?: shared.Errors[];
+    @SpeakeasyMetadata({ elemType: shared.Errors })
+    @Expose({ name: "errors" })
+    @Type(() => shared.Errors)
+    errors?: shared.Errors[];
 
-  @SpeakeasyMetadata({ elemType: shared.Logs })
-  @Expose({ name: "logs" })
-  @Type(() => shared.Logs)
-  logs?: shared.Logs[];
+    @SpeakeasyMetadata({ elemType: shared.Logs })
+    @Expose({ name: "logs" })
+    @Type(() => shared.Logs)
+    logs?: shared.Logs[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "model" })
-  @Type(() => shared.Lead)
-  model?: shared.Lead;
+    @SpeakeasyMetadata()
+    @Expose({ name: "model" })
+    @Type(() => shared.Lead)
+    model?: shared.Lead;
 
-  @SpeakeasyMetadata({ elemType: shared.Warnings })
-  @Expose({ name: "warnings" })
-  @Type(() => shared.Warnings)
-  warnings?: shared.Warnings[];
+    @SpeakeasyMetadata({ elemType: shared.Warnings })
+    @Expose({ name: "warnings" })
+    @Type(() => shared.Warnings)
+    warnings?: shared.Warnings[];
 }
 
 export class CreateLeadResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Lead created
-   */
-  @SpeakeasyMetadata()
-  createLead201ApplicationJSONObject?: CreateLead201ApplicationJSON;
+    /**
+     * Lead created
+     */
+    @SpeakeasyMetadata()
+    createLead201ApplicationJSONObject?: CreateLead201ApplicationJSON;
 }

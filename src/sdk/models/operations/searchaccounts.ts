@@ -8,100 +8,92 @@ import { AxiosResponse } from "axios";
 import { Expose, Type } from "class-transformer";
 
 export enum SearchAccountsRequestBodyFiltersWebsite1Type {
-  Equals = "equals",
+    Equals = "equals",
 }
 
 export class SearchAccountsRequestBodyFiltersWebsite1 extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "type" })
-  type: SearchAccountsRequestBodyFiltersWebsite1Type;
+    @SpeakeasyMetadata()
+    @Expose({ name: "type" })
+    type: SearchAccountsRequestBodyFiltersWebsite1Type;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "value" })
-  value: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "value" })
+    value: string;
 }
 
 export class SearchAccountsRequestBodyFilters extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "website" })
-  website?: any;
+    @SpeakeasyMetadata()
+    @Expose({ name: "website" })
+    website?: any;
 }
 
 export class SearchAccountsRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "filters" })
-  @Type(() => SearchAccountsRequestBodyFilters)
-  filters: SearchAccountsRequestBodyFilters;
+    @SpeakeasyMetadata()
+    @Expose({ name: "filters" })
+    @Type(() => SearchAccountsRequestBodyFilters)
+    filters: SearchAccountsRequestBodyFilters;
 }
 
 export class SearchAccountsRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody: SearchAccountsRequestBody;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody: SearchAccountsRequestBody;
 
-  /**
-   * The pagination cursor value
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=cursor",
-  })
-  cursor?: string;
+    /**
+     * The pagination cursor value
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=cursor" })
+    cursor?: string;
 
-  /**
-   * Number of results to return per page
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=page_size",
-  })
-  pageSize?: string;
+    /**
+     * Number of results to return per page
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page_size" })
+    pageSize?: string;
 
-  /**
-   * The customer ID that uniquely identifies the customer in your application
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-customer-id",
-  })
-  xCustomerId: string;
+    /**
+     * The customer ID that uniquely identifies the customer in your application
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-customer-id" })
+    xCustomerId: string;
 
-  /**
-   * The provider name
-   */
-  @SpeakeasyMetadata({
-    data: "header, style=simple;explode=false;name=x-provider-name",
-  })
-  xProviderName: string;
+    /**
+     * The provider name
+     */
+    @SpeakeasyMetadata({ data: "header, style=simple;explode=false;name=x-provider-name" })
+    xProviderName: string;
 }
 
 /**
  * Accounts
  */
 export class SearchAccounts200ApplicationJSON extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "next" })
-  next?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "next" })
+    next?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "previous" })
-  previous?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "previous" })
+    previous?: string;
 
-  @SpeakeasyMetadata({ elemType: shared.Account })
-  @Expose({ name: "results" })
-  @Type(() => shared.Account)
-  results?: shared.Account[];
+    @SpeakeasyMetadata({ elemType: shared.Account })
+    @Expose({ name: "results" })
+    @Type(() => shared.Account)
+    results?: shared.Account[];
 }
 
 export class SearchAccountsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Accounts
-   */
-  @SpeakeasyMetadata()
-  searchAccounts200ApplicationJSONObject?: SearchAccounts200ApplicationJSON;
+    /**
+     * Accounts
+     */
+    @SpeakeasyMetadata()
+    searchAccounts200ApplicationJSONObject?: SearchAccounts200ApplicationJSON;
 }

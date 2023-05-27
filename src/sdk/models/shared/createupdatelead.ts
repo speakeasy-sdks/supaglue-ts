@@ -8,44 +8,44 @@ import { EmailAddresses } from "./emailaddresses";
 import { Expose, Type } from "class-transformer";
 
 export class CreateUpdateLead extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: Addresses })
-  @Expose({ name: "addresses" })
-  @Type(() => Addresses)
-  addresses?: Addresses[];
+    @SpeakeasyMetadata({ elemType: Addresses })
+    @Expose({ name: "addresses" })
+    @Type(() => Addresses)
+    addresses?: Addresses[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "company" })
-  company?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "company" })
+    company?: string;
 
-  /**
-   * Custom properties to be inserted that are not covered by the common model. Object keys must match exactly to the corresponding provider API.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "custom_fields" })
-  customFields?: Record<string, any>;
+    /**
+     * Custom properties to be inserted that are not covered by the common model. Object keys must match exactly to the corresponding provider API.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "custom_fields" })
+    customFields?: Record<string, any>;
 
-  @SpeakeasyMetadata({ elemType: EmailAddresses })
-  @Expose({ name: "email_addresses" })
-  @Type(() => EmailAddresses)
-  emailAddresses?: EmailAddresses[];
+    @SpeakeasyMetadata({ elemType: EmailAddresses })
+    @Expose({ name: "email_addresses" })
+    @Type(() => EmailAddresses)
+    emailAddresses?: EmailAddresses[];
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "first_name" })
-  firstName?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "first_name" })
+    firstName?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "last_name" })
-  lastName?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "last_name" })
+    lastName?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "lead_source" })
-  leadSource?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "lead_source" })
+    leadSource?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "owner_id" })
-  ownerId?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "owner_id" })
+    ownerId?: string;
 
-  @SpeakeasyMetadata()
-  @Expose({ name: "title" })
-  title?: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "title" })
+    title?: string;
 }

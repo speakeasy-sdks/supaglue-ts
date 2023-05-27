@@ -3,7 +3,7 @@
  */
 
 export enum PhoneNumberType {
-  Primary = "primary",
-  Mobile = "mobile",
-  Fax = "fax",
+    Primary = "primary",
+    Mobile = "mobile",
+    Fax = "fax",
 }
