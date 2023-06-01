@@ -6,6 +6,7 @@ src/sdk/passthrough.ts
 src/sdk/users.ts
 src/sdk/sdk.ts
 .eslintrc.yml
+.gitignore
 jest.config.js
 package-lock.json
 package.json
