@@ -53,8 +53,8 @@ export class SDKConfiguration {
     serverURL: string;
     serverDefaults: any;
     language = "typescript";
-    sdkVersion = "0.17.0";
-    genVersion = "2.35.3";
+    sdkVersion = "0.17.1";
+    genVersion = "2.35.9";
 
     public constructor(init?: Partial<SDKConfiguration>) {
         Object.assign(this, init);
@@ -62,7 +62,7 @@ export class SDKConfiguration {
 }
 
 /**
- * # Introduction
+ * Supaglue CRM API: # Introduction
  *
  * @remarks
  * Welcome to the Supaglue unified CRM API documentation. You can use this API to read data that has been synced into Supaglue from third-party providers.
