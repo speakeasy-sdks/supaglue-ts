@@ -21,7 +21,7 @@ import { GetUserResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/operat
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 
@@ -48,7 +48,7 @@ import { ListUsersResponse } from "@speakeasy-sdks/supaglue/dist/sdk/models/oper
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 

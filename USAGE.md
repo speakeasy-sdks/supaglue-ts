@@ -6,7 +6,7 @@ import { AddressType, PhoneNumberType } from "@speakeasy-sdks/supaglue/dist/sdk/
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 

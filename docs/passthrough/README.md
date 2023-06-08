@@ -20,7 +20,7 @@ import { SendPassthroughRequestRequestBodyMethod, SendPassthroughRequestResponse
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 

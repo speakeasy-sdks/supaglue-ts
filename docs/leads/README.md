@@ -24,7 +24,7 @@ import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@s
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 
@@ -112,7 +112,7 @@ import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@s
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 
@@ -141,7 +141,7 @@ import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@s
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 
@@ -175,7 +175,7 @@ import { AddressType, EmailAddressesEmailAddressType, PhoneNumberType } from "@s
 
 const sdk = new Supaglue({
   security: {
-    apiKeyAuth: "YOUR_API_KEY_HERE",
+    apiKeyAuth: "",
   },
 });
 
