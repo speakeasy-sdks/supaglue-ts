@@ -1,0 +1,11 @@
+# UpdateLeadRequest
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `requestBody`                                                             | [UpdateLeadRequestBody](../../models/operations/updateleadrequestbody.md) | :heavy_check_mark:                                                        | N/A                                                                       |                                                                           |
+| `leadId`                                                                  | *string*                                                                  | :heavy_check_mark:                                                        | N/A                                                                       | 82de27cb-6f8c-4278-b783-82d1d916eddc                                      |
+| `xCustomerId`                                                             | *string*                                                                  | :heavy_check_mark:                                                        | The customer ID that uniquely identifies the customer in your application | my-customer-1                                                             |
+| `xProviderName`                                                           | *string*                                                                  | :heavy_check_mark:                                                        | The provider name                                                         | salesforce                                                                |

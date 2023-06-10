@@ -1,0 +1,10 @@
+# CreateContactRequest
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `requestBody`                                                                   | [CreateContactRequestBody](../../models/operations/createcontactrequestbody.md) | :heavy_check_mark:                                                              | N/A                                                                             |                                                                                 |
+| `xCustomerId`                                                                   | *string*                                                                        | :heavy_check_mark:                                                              | The customer ID that uniquely identifies the customer in your application       | my-customer-1                                                                   |
+| `xProviderName`                                                                 | *string*                                                                        | :heavy_check_mark:                                                              | The provider name                                                               | salesforce                                                                      |

@@ -1,0 +1,12 @@
+# ListLeads200ApplicationJSON
+
+Leads
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `next`                                                                               | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  | eyJpZCI6IjQyNTc5ZjczLTg1MjQtNDU3MC05YjY3LWVjYmQ3MDJjNmIxNCIsInJldmVyc2UiOmZhbHNlfQ== |
+| `previous`                                                                           | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  | eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9     |
+| `results`                                                                            | [shared.Lead](../../models/shared/lead.md)[]                                         | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |

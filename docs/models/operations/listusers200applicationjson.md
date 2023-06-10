@@ -1,0 +1,12 @@
+# ListUsers200ApplicationJSON
+
+Users
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `next`                                                                               | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  | eyJpZCI6IjQyNTc5ZjczLTg1MjQtNDU3MC05YjY3LWVjYmQ3MDJjNmIxNCIsInJldmVyc2UiOmZhbHNlfQ== |
+| `previous`                                                                           | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  | eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9     |
+| `results`                                                                            | [shared.User](../../models/shared/user.md)[]                                         | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |
