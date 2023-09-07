@@ -6,151 +6,138 @@ info:
     name: Supaglue
     email: docs@supaglue.com
     url: https://supaglue.com
-  description: >
+  description: |
     # Introduction
-
-    Welcome to the Supaglue unified CRM API documentation. You can use this API
-    to read data that has been synced into Supaglue from third-party providers.
-
+    Welcome to the Supaglue unified CRM API documentation. You can use this API to read data that has been synced into Supaglue from third-party providers.
     ### Base API URL
-
     ```
-
     http://localhost:8080/crm/v1
-
     ```
 externalDocs:
   description: Try out our API in Postman!
   url: https://www.postman.com/supaglue/workspace/supaglue-public/overview
 servers:
-  - url: http://localhost:8080/crm/v1
-    description: Local Supaglue API
-security: 
-  - ApiKeyAuth: []
+- url: http://localhost:8080/crm/v1
+  description: Local Supaglue API
+security:
+- ApiKeyAuth: []
 x-speakeasy-name-override:
-  - operationId: get*
-    methodNameOverride: get
-  - operationId: list*
-    methodNameOverride: list
-  - operationId: create*
-    methodNameOverride: create
-  - operationId: search*
-    methodNameOverride: search
-  - operationId: update*
-    methodNameOverride: update
-  - operationId: send*
-    methodNameOverride: send
-
+- operationId: get*
+  methodNameOverride: get
+- operationId: list*
+  methodNameOverride: list
+- operationId: create*
+  methodNameOverride: create
+- operationId: search*
+  methodNameOverride: search
+- operationId: update*
+  methodNameOverride: update
+- operationId: send*
+  methodNameOverride: send
 tags:
-  - name: Accounts
-    description: The `Account` Common Model is used to represent a "company" in CRMs.
-  - name: Contacts
-    description: The `Contact` Common Model is used to represent a "contact" in CRMs.
-  - name: Leads
-    description: >-
-      The `Lead` Common Model is used to represent a "potential customer" in
-      CRMs.
-  - name: Opportunities
-    description: >-
-      The `Opportunity` Common Model is used to represent a "deal opportunity"
-      in CRMs.
-  - name: Users
-    description: >-
-      The `User` Common Model is used to represent a "user" that can login to
-      CRMs.
-  - name: Sync
-    description: Get information and history for the sync process.
-  - name: Passthrough
-    description: Passthrough operations to underlying providers.
-  
+- name: Accounts
+  description: The `Account` Common Model is used to represent a "company" in CRMs.
+- name: Contacts
+  description: The `Contact` Common Model is used to represent a "contact" in CRMs.
+- name: Leads
+  description: The `Lead` Common Model is used to represent a "potential customer"
+    in CRMs.
+- name: Opportunities
+  description: The `Opportunity` Common Model is used to represent a "deal opportunity"
+    in CRMs.
+- name: Users
+  description: The `User` Common Model is used to represent a "user" that can login
+    to CRMs.
+- name: Sync
+  description: Get information and history for the sync process.
+- name: Passthrough
+  description: Passthrough operations to underlying providers.
 paths:
   /accounts:
     get:
       operationId: listAccounts
       tags:
-        - Accounts
+      - Accounts
       summary: List accounts
       description: Get a list of accounts
       parameters:
-        - $ref: '#/components/parameters/created_after'
-        - $ref: '#/components/parameters/created_before'
-        - $ref: '#/components/parameters/updated_after'
-        - $ref: '#/components/parameters/updated_before'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/expand'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/created_after'
+      - $ref: '#/components/parameters/created_before'
+      - $ref: '#/components/parameters/updated_after'
+      - $ref: '#/components/parameters/updated_before'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/page_size'
       responses:
-        '200':
+        "200":
           description: Accounts
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/account'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/account'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        description: Integration API
-                        id: 9572d08b-f19f-48cc-a992-1eb7031d3f6a
-                        remote_id: 1234
-                        industry: APIs
-                        last_activity_at: '2022-02-10T00:00:00Z'
-                        name: Sample Customer
-                        number_of_employees: 276000
-                        owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2021-11-10T00:00:00Z'
-                        updated_at: '2022-01-09T00:00:00Z'
-                        website: https://supaglue.com/
-                      - addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        description: Integration API
-                        id: 9572d08b-f19f-48cc-a992-1eb7031d3f6b
-                        remote_id: 1235
-                        industry: APIs
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        name: Sample Customer
-                        number_of_employees: 276000
-                        owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        website: https://supaglue.com/
+                    - addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      description: Integration API
+                      id: 9572d08b-f19f-48cc-a992-1eb7031d3f6a
+                      remote_id: 1234
+                      industry: APIs
+                      last_activity_at: "2022-02-10T00:00:00Z"
+                      name: Sample Customer
+                      number_of_employees: 276000
+                      owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2021-11-10T00:00:00Z"
+                      updated_at: "2022-01-09T00:00:00Z"
+                      website: https://supaglue.com/
+                    - addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      description: Integration API
+                      id: 9572d08b-f19f-48cc-a992-1eb7031d3f6b
+                      remote_id: 1235
+                      industry: APIs
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      name: Sample Customer
+                      number_of_employees: 276000
+                      owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      website: https://supaglue.com/
     post:
       operationId: createAccount
       x-speakeasy-usage-example: true
       summary: Create account
       tags:
-        - Accounts
+      - Accounts
       parameters: []
       requestBody:
         required: true
@@ -162,9 +149,29 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_account'
               required:
-                - model
+              - model
+            examples:
+              model:
+                description: Integration API
+                industry: API's
+                name: Sample Customer
+                number_of_employees: 276000
+                website: https://supaglue.com/
+                addresses:
+                - address_type: shipping
+                  city: San Francisco
+                  country: US
+                  postal_code: "94107"
+                  state: CA
+                  street1: 525 Brannan
+                  street2: null
+                phone_numbers:
+                - phone_number: "+14151234567"
+                  phone_number_type: primary
+                owner_id: 9f3e97fd-4d5d-4efc-959d-bbebfac079f5
+                custom_fields: {}
       responses:
-        '201':
+        "201":
           description: Account created
           content:
             application/json:
@@ -179,18 +186,60 @@ paths:
                     $ref: '#/components/schemas/account'
                   warnings:
                     $ref: '#/components/schemas/warnings'
+              examples:
+                errors:
+                - detail: name is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+                  source:
+                    pointer: irure consectetur
+                  title: Missing Required Field
+                - detail: name is a required field on model.
+                  problem_type: MISSING_REQUIRED_FIELD
+                  source:
+                    pointer: et
+                  title: Missing Required Field
+                logs:
+                - dashboard_view: https://api.supaglue.com/logs/99433219-8017-4acd-bb3c-ceb23d663832
+                  log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+                  log_summary:
+                    method: POST
+                    status_code: 200
+                    url: https://harvest.greenhouse.io/v1/candidates/
+                account:
+                  description: Integration API
+                  id: e888cedf-e9d0-42c5-9485-2d72984faef2
+                  remote_id: "1234"
+                  industry: API's
+                  last_activity_at: "2022-02-27T00:00:00Z"
+                  name: Sample Customer
+                  number_of_employees: 276000
+                  owner_id: d8ceb3ff-8b7f-4fa7-b8de-849292f6ca69
+                  created_at: "2022-02-27T00:00:00Z"
+                  updated_at: "2022-02-27T00:00:00Z"
+                  website: https://supaglue.com/
+                warnings:
+                - detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+                  source:
+                    pointer: Lorem ipsum
+                  title: Unrecognized Field
+                - detail: An unrecognized field, age, was passed in with request data.
+                  problem_type: UNRECOGNIZED_FIELD
+                  source:
+                    pointer: in
+                  title: Unrecognized Field
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /accounts/_search:
     post:
       operationId: searchAccounts
       summary: Search accounts
       tags:
-        - Accounts
+      - Accounts
       parameters:
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/page_size'
       requestBody:
         required: true
         content:
@@ -204,86 +253,90 @@ paths:
                     website:
                       $ref: '#/components/schemas/filter'
               required:
-                - filters
+              - filters
+            examples:
+              example1:
+                filters:
+                  website:
+                    type: equals
+                    value: example.com
       responses:
-        '200':
+        "200":
           description: Accounts
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/account'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/account'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        description: Integration API
-                        id: 9572d08b-f19f-48cc-a992-1eb7031d3f6a
-                        remote_id: 1234
-                        industry: APIs
-                        last_activity_at: '2022-02-10T00:00:00Z'
-                        name: Sample Customer
-                        number_of_employees: 276000
-                        owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2021-11-10T00:00:00Z'
-                        updated_at: '2022-01-09T00:00:00Z'
-                        website: https://supaglue.com/
-                      - addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        description: Integration API
-                        id: 9572d08b-f19f-48cc-a992-1eb7031d3f6b
-                        remote_id: 1235
-                        industry: APIs
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        name: Sample Customer
-                        number_of_employees: 276000
-                        owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        website: https://supaglue.com/
+                    - addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      description: Integration API
+                      id: 9572d08b-f19f-48cc-a992-1eb7031d3f6a
+                      remote_id: 1234
+                      industry: APIs
+                      last_activity_at: "2022-02-10T00:00:00Z"
+                      name: Sample Customer
+                      number_of_employees: 276000
+                      owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2021-11-10T00:00:00Z"
+                      updated_at: "2022-01-09T00:00:00Z"
+                      website: https://supaglue.com/
+                    - addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      description: Integration API
+                      id: 9572d08b-f19f-48cc-a992-1eb7031d3f6b
+                      remote_id: 1235
+                      industry: APIs
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      name: Sample Customer
+                      number_of_employees: 276000
+                      owner_id: cb40ff24-6587-4b24-82a3-9269a05d5dda
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      website: https://supaglue.com/
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /accounts/{account_id}:
     get:
       operationId: getAccount
       summary: Get account
       tags:
-        - Accounts
+      - Accounts
       parameters:
-        - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/expand'
       responses:
-        '200':
+        "200":
           description: Account
           content:
             application/json:
@@ -293,39 +346,39 @@ paths:
                 Example:
                   value:
                     addresses:
-                      - address_type: BILLING
-                        city: San Francisco
-                        country: CX
-                        postal_code: '94107'
-                        state: CA
-                        street1: 525 Brannan
-                        street2: null
-                      - address_type: BILLING
-                        city: San Francisco
-                        country: US
-                        postal_code: '94107'
-                        state: CA
-                        street1: 525 Brannan
-                        street2: null
+                    - address_type: BILLING
+                      city: San Francisco
+                      country: CX
+                      postal_code: "94107"
+                      state: CA
+                      street1: 525 Brannan
+                      street2: null
+                    - address_type: BILLING
+                      city: San Francisco
+                      country: US
+                      postal_code: "94107"
+                      state: CA
+                      street1: 525 Brannan
+                      street2: null
                     description: Integration API
                     id: 9572d08b-f19f-48cc-a992-1eb7031d3f6c
                     remote_id: 1234
                     industry: API's
-                    last_activity_at: '2022-02-10T00:00:00Z'
+                    last_activity_at: "2022-02-10T00:00:00Z"
                     name: Supaglue
                     number_of_employees: 276000
                     owner_id: 9377fd4d-d420-4e0b-93ea-789078a3eab4
                     phone_numbers:
-                      - phone_number: '+14151234567'
-                        phone_number_type: mobile
-                    created_at: '2023-02-27T00:00:00Z'
-                    updated_at: '2023-02-27T00:00:00Z'
+                    - phone_number: "+14151234567"
+                      phone_number_type: mobile
+                    created_at: "2023-02-27T00:00:00Z"
+                    updated_at: "2023-02-27T00:00:00Z"
                     website: https://supaglue.com/
     patch:
       operationId: updateAccount
       summary: Update account
       tags:
-        - Accounts
+      - Accounts
       parameters: []
       requestBody:
         required: true
@@ -337,9 +390,9 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_account'
               required:
-                - model
+              - model
       responses:
-        '200':
+        "200":
           description: Account updated
           content:
             application/json:
@@ -355,98 +408,96 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
-      - name: account_id
-        in: path
-        required: true
-        schema:
-          type: string
-          example: 0258cbc6-6020-430a-848e-aafacbadf4ae
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
+    - name: account_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 0258cbc6-6020-430a-848e-aafacbadf4ae
   /contacts:
     get:
       operationId: listContacts
       tags:
-        - Contacts
+      - Contacts
       summary: List contacts
       description: Get a list of contacts
       parameters:
-        - $ref: '#/components/parameters/created_after'
-        - $ref: '#/components/parameters/created_before'
-        - $ref: '#/components/parameters/updated_after'
-        - $ref: '#/components/parameters/updated_before'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/expand'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/created_after'
+      - $ref: '#/components/parameters/created_before'
+      - $ref: '#/components/parameters/updated_after'
+      - $ref: '#/components/parameters/updated_before'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/page_size'
       responses:
-        '200':
+        "200":
           description: Contacts
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/contact'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/contact'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - account_id: 9377fd4d-d420-4e0b-93ea-789078a3eab4
-                        addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        email_addresses:
-                          - email_address: hello@supaglue.com
-                            email_address_type: work
-                        first_name: George
-                        id: 43a45011-c55e-42f3-81a1-99158c956775
-                        remote_id: 1234
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        last_name: Xing
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
-                      - account: 9377fd4d-d420-4e0b-93ea-789078a3eab4
-                        addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        email_addresses:
-                          - email_address: hello@supaglue.com
-                            email_address_type: work
-                        first_name: George
-                        id: 5733a8b6-472d-45fa-8f10-e0b00727cced
-                        remote_id: 1235
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        last_name: Xing
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
+                    - account_id: 9377fd4d-d420-4e0b-93ea-789078a3eab4
+                      addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      email_addresses:
+                      - email_address: hello@supaglue.com
+                        email_address_type: work
+                      first_name: George
+                      id: 43a45011-c55e-42f3-81a1-99158c956775
+                      remote_id: 1234
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      last_name: Xing
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
+                    - account: 9377fd4d-d420-4e0b-93ea-789078a3eab4
+                      addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      email_addresses:
+                      - email_address: hello@supaglue.com
+                        email_address_type: work
+                      first_name: George
+                      id: 5733a8b6-472d-45fa-8f10-e0b00727cced
+                      remote_id: 1235
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      last_name: Xing
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
     post:
       operationId: createContact
       summary: Create contact
       tags:
-        - Contacts
+      - Contacts
       parameters: []
       requestBody:
         required: true
@@ -458,15 +509,15 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_contact'
               required:
-                - model
+              - model
             example:
               model:
                 first_name: George
-                last_activity_at: '2022-02-10T00:00:00Z'
+                last_activity_at: "2022-02-10T00:00:00Z"
                 last_name: Xing
                 account_id: 64571bff-48ea-4469-9fa0-ee1a0bab38bd
       responses:
-        '201':
+        "201":
           description: Contact created
           content:
             application/json:
@@ -482,17 +533,17 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /contacts/_search:
     post:
       operationId: searchContacts
       summary: Search contacts
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/page_size'
       requestBody:
         required: true
         content:
@@ -506,84 +557,82 @@ paths:
                     email_address:
                       $ref: '#/components/schemas/filter'
               required:
-                - filters
+              - filters
       responses:
-        '200':
+        "200":
           description: Contacts
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/contact'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/contact'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - account_id: 9377fd4d-d420-4e0b-93ea-789078a3eab4
-                        addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        email_addresses:
-                          - email_address: hello@supaglue.com
-                            email_address_type: work
-                        first_name: George
-                        id: 43a45011-c55e-42f3-81a1-99158c956775
-                        remote_id: 1234
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        last_name: Xing
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
-                      - account: 9377fd4d-d420-4e0b-93ea-789078a3eab4
-                        addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        email_addresses:
-                          - email_address: hello@supaglue.com
-                            email_address_type: work
-                        first_name: George
-                        id: 5733a8b6-472d-45fa-8f10-e0b00727cced
-                        remote_id: 1235
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        last_name: Xing
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
+                    - account_id: 9377fd4d-d420-4e0b-93ea-789078a3eab4
+                      addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      email_addresses:
+                      - email_address: hello@supaglue.com
+                        email_address_type: work
+                      first_name: George
+                      id: 43a45011-c55e-42f3-81a1-99158c956775
+                      remote_id: 1234
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      last_name: Xing
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
+                    - account: 9377fd4d-d420-4e0b-93ea-789078a3eab4
+                      addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      email_addresses:
+                      - email_address: hello@supaglue.com
+                        email_address_type: work
+                      first_name: George
+                      id: 5733a8b6-472d-45fa-8f10-e0b00727cced
+                      remote_id: 1235
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      last_name: Xing
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /contacts/{contact_id}:
     get:
       operationId: getContact
       summary: Get contact
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/expand'
       responses:
-        '200':
+        "200":
           description: Contact
           content:
             application/json:
@@ -593,8 +642,7 @@ paths:
       operationId: updateContact
       summary: Update contact
       tags:
-        - Contacts
-      
+      - Contacts
       parameters: []
       requestBody:
         required: true
@@ -606,7 +654,7 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_contact'
               required:
-                - model
+              - model
             examples:
               Example:
                 value:
@@ -615,7 +663,7 @@ paths:
                     last_name: Xing
                     account_id: 0ce05511-adbc-4144-a049-6631c7ea3b04
       responses:
-        '200':
+        "200":
           description: Contact updated
           content:
             application/json:
@@ -631,112 +679,108 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
-      - name: contact_id
-        in: path
-        required: true
-        schema:
-          type: string
-          example: 0258cbc6-6020-430a-848e-aafacbadf4ae
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
+    - name: contact_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 0258cbc6-6020-430a-848e-aafacbadf4ae
   /leads:
     get:
       operationId: listLeads
       tags:
-        - Leads
-      
+      - Leads
       summary: List leads
       description: Get a list of leads
       parameters:
-        - $ref: '#/components/parameters/created_after'
-        - $ref: '#/components/parameters/created_before'
-        - $ref: '#/components/parameters/updated_after'
-        - $ref: '#/components/parameters/updated_before'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/expand'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/created_after'
+      - $ref: '#/components/parameters/created_before'
+      - $ref: '#/components/parameters/updated_after'
+      - $ref: '#/components/parameters/updated_before'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/page_size'
       responses:
-        '200':
+        "200":
           description: Leads
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/lead'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/lead'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        company: Supaglue
-                        converted_account_id: 5733a8b6-472d-45fa-8f10-e0b00727cced
-                        converted_contact_id: 7f65f33c-e645-40f8-b87c-6148899caa8e
-                        converted_date: '2023-02-27T00:00:00Z'
-                        email_addresses:
-                          - email_address: hello@supaglue.com
-                            email_address_type: work
-                        first_name: George
-                        id: 62bd34b8-54fa-4628-ae75-5fd6be59e4b7
-                        remote_id: 1234
-                        last_name: Xing
-                        lead_source: API Blogger
-                        owner_id: 04363f99-e807-4f69-b233-3d31b92f9bb2
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        title: Co-Founder
-                      - addresses:
-                          - address_type: shipping
-                            city: San Francisco
-                            country: US
-                            postal_code: '94107'
-                            state: CA
-                            street1: 525 Brannan
-                            street2: null
-                        company: Supaglue
-                        converted_account_id: c300123d-91e0-4519-b514-ff6d308eab47
-                        converted_contact_id: 762b1d20-374b-41c9-a006-f6ed188a3e54
-                        converted_date: '2022-03-10T00:00:00Z'
-                        email_addresses:
-                          - email_address: hello@supaglue.com
-                            email_address_type: work
-                        first_name: George
-                        id: 29b3e861-b1da-4f74-885a-e151c5759acf
-                        remote_id: 1235
-                        last_name: Xing
-                        lead_source: API Blogger
-                        owner_id: 71e01ac4-5f21-46e2-b021-46555ade976d
-                        phone_numbers:
-                          - phone_number: '+14151234567'
-                            phone_number_type: mobile
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        title: Co-Founder
+                    - addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      company: Supaglue
+                      converted_account_id: 5733a8b6-472d-45fa-8f10-e0b00727cced
+                      converted_contact_id: 7f65f33c-e645-40f8-b87c-6148899caa8e
+                      converted_date: "2023-02-27T00:00:00Z"
+                      email_addresses:
+                      - email_address: hello@supaglue.com
+                        email_address_type: work
+                      first_name: George
+                      id: 62bd34b8-54fa-4628-ae75-5fd6be59e4b7
+                      remote_id: 1234
+                      last_name: Xing
+                      lead_source: API Blogger
+                      owner_id: 04363f99-e807-4f69-b233-3d31b92f9bb2
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      title: Co-Founder
+                    - addresses:
+                      - address_type: shipping
+                        city: San Francisco
+                        country: US
+                        postal_code: "94107"
+                        state: CA
+                        street1: 525 Brannan
+                        street2: null
+                      company: Supaglue
+                      converted_account_id: c300123d-91e0-4519-b514-ff6d308eab47
+                      converted_contact_id: 762b1d20-374b-41c9-a006-f6ed188a3e54
+                      converted_date: "2022-03-10T00:00:00Z"
+                      email_addresses:
+                      - email_address: hello@supaglue.com
+                        email_address_type: work
+                      first_name: George
+                      id: 29b3e861-b1da-4f74-885a-e151c5759acf
+                      remote_id: 1235
+                      last_name: Xing
+                      lead_source: API Blogger
+                      owner_id: 71e01ac4-5f21-46e2-b021-46555ade976d
+                      phone_numbers:
+                      - phone_number: "+14151234567"
+                        phone_number_type: mobile
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      title: Co-Founder
     post:
       operationId: createLead
       summary: Create lead
       tags:
-        - Leads
-      
+      - Leads
       parameters: []
       requestBody:
         required: true
@@ -748,7 +792,7 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_lead'
               required:
-                - model
+              - model
             example:
               model:
                 company: Supaglue
@@ -757,7 +801,7 @@ paths:
                 lead_source: API Blogger
                 title: Co-Founder
       responses:
-        '201':
+        "201":
           description: Lead created
           content:
             application/json:
@@ -773,19 +817,18 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /leads/{lead_id}:
     get:
       operationId: getLead
       summary: Get lead
       tags:
-        - Leads
-      
+      - Leads
       parameters:
-        - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/expand'
       responses:
-        '200':
+        "200":
           description: Lead
           content:
             application/json:
@@ -795,8 +838,7 @@ paths:
       operationId: updateLead
       summary: Update lead
       tags:
-        - Leads
-      
+      - Leads
       parameters: []
       requestBody:
         required: true
@@ -808,7 +850,7 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_lead'
               required:
-                - model
+              - model
             examples:
               Example:
                 value:
@@ -819,7 +861,7 @@ paths:
                     lead_source: API Blogger
                     title: Co-Founder
       responses:
-        '200':
+        "200":
           description: Lead updated
           content:
             application/json:
@@ -835,88 +877,82 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
-      - name: lead_id
-        in: path
-        required: true
-        schema:
-          type: string
-          example: 82de27cb-6f8c-4278-b783-82d1d916eddc
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
+    - name: lead_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 82de27cb-6f8c-4278-b783-82d1d916eddc
   /opportunities:
     get:
       operationId: listOpportunities
       tags:
-        - Opportunities
-      
+      - Opportunities
       summary: List opportunities
       description: Get a list of opportunities
       parameters:
-        - $ref: '#/components/parameters/created_after'
-        - $ref: '#/components/parameters/created_before'
-        - $ref: '#/components/parameters/updated_after'
-        - $ref: '#/components/parameters/updated_before'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/expand'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/created_after'
+      - $ref: '#/components/parameters/created_before'
+      - $ref: '#/components/parameters/updated_after'
+      - $ref: '#/components/parameters/updated_before'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/page_size'
       responses:
-        '200':
+        "200":
           description: Opportunities
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/opportunity'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/opportunity'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - account:
-                          id: 82de27cb-6f8c-4278-b783-82d1d916eddc
-                        amount: 100000
-                        close_date: '2023-02-27T00:00:00Z'
-                        description: >-
-                          Wants to use open source unified API for third-party
-                          integrations
-                        id: 700eaee7-0b1d-40d3-90a9-1ebf77943a2e
-                        remote_id: 1234
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        name: Needs third-party integrations
-                        owner_id: 475789f9-0df9-4a09-959e-c9f5eb7a541c
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        stage: Closed Won
-                      - account:
-                          id: 0958cbc6-6040-430a-848e-aafacbadf4ae
-                        amount: 100000
-                        close_date: '2023-02-27T00:00:00Z'
-                        description: >-
-                          Wants to use open source unified API for third-party
-                          integrations
-                        id: 1e68260b-f250-427b-88f1-26ccc34c62d6
-                        remote_id: 1235
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        name: Needs third-party integrations
-                        owner_id: 64761ae1-8c42-461c-8778-9671f9d39997
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        stage: Closed Lost
+                    - account:
+                        id: 82de27cb-6f8c-4278-b783-82d1d916eddc
+                      amount: 100000
+                      close_date: "2023-02-27T00:00:00Z"
+                      description: Wants to use open source unified API for third-party
+                        integrations
+                      id: 700eaee7-0b1d-40d3-90a9-1ebf77943a2e
+                      remote_id: 1234
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      name: Needs third-party integrations
+                      owner_id: 475789f9-0df9-4a09-959e-c9f5eb7a541c
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      stage: Closed Won
+                    - account:
+                        id: 0958cbc6-6040-430a-848e-aafacbadf4ae
+                      amount: 100000
+                      close_date: "2023-02-27T00:00:00Z"
+                      description: Wants to use open source unified API for third-party
+                        integrations
+                      id: 1e68260b-f250-427b-88f1-26ccc34c62d6
+                      remote_id: 1235
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      name: Needs third-party integrations
+                      owner_id: 64761ae1-8c42-461c-8778-9671f9d39997
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      stage: Closed Lost
     post:
       operationId: createOpportunity
       summary: Create opportunity
       tags:
-        - Opportunities
-      
+      - Opportunities
       parameters: []
       requestBody:
         required: true
@@ -928,19 +964,18 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_opportunity'
               required:
-                - model
+              - model
             example:
               model:
                 amount: 100000
-                close_date: '2023-02-27T00:00:00Z'
-                description: >-
-                  Wants to use open source unified API for third-party
+                close_date: "2023-02-27T00:00:00Z"
+                description: Wants to use open source unified API for third-party
                   integrations
                 name: Needs Integrations
                 stage: Closed Won
                 account_id: 109c88c0-7bf4-4cd8-afbc-b51f9432ca0b
       responses:
-        '201':
+        "201":
           description: Opportunity created
           content:
             application/json:
@@ -956,18 +991,17 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /opportunities/_search:
     post:
       operationId: searchOpportunities
       summary: Search Opportunities
       tags:
-        - Opportunities
+      - Opportunities
       parameters:
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/page_size'
-      
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/page_size'
       requestBody:
         required: true
         content:
@@ -981,73 +1015,68 @@ paths:
                     account_id:
                       $ref: '#/components/schemas/filter'
               required:
-                - filters
+              - filters
       responses:
-        '200':
+        "200":
           description: Opportunities
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/opportunity'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/opportunity'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - account:
-                          id: 82de27cb-6f8c-4278-b783-82d1d916eddc
-                        amount: 100000
-                        close_date: '2023-02-27T00:00:00Z'
-                        description: >-
-                          Wants to use open source unified API for third-party
-                          integrations
-                        id: 37704671-1955-47b3-b7a8-6ca814fa5005
-                        remote_id: 1234
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        name: Needs third-party integrations
-                        owner_id: 475789f9-0df9-4a09-959e-c9f5eb7a541c
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        stage: Closed Won
-                      - account:
-                          id: 82de27cb-6f8c-4278-b783-82d1d916eddc
-                        amount: 100000
-                        close_date: '2023-02-27T00:00:00Z'
-                        description: >-
-                          Wants to use open source unified API for third-party
-                          integrations
-                        id: 1e68260b-f250-427b-88f1-26ccc34c62d6
-                        remote_id: 1235
-                        last_activity_at: '2023-02-27T00:00:00Z'
-                        name: Needs third-party integrations
-                        owner_id: 64761ae1-8c42-461c-8778-9671f9d39997
-                        created_at: '2023-02-27T00:00:00Z'
-                        updated_at: '2023-02-27T00:00:00Z'
-                        stage: Closed Lost
+                    - account:
+                        id: 82de27cb-6f8c-4278-b783-82d1d916eddc
+                      amount: 100000
+                      close_date: "2023-02-27T00:00:00Z"
+                      description: Wants to use open source unified API for third-party
+                        integrations
+                      id: 37704671-1955-47b3-b7a8-6ca814fa5005
+                      remote_id: 1234
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      name: Needs third-party integrations
+                      owner_id: 475789f9-0df9-4a09-959e-c9f5eb7a541c
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      stage: Closed Won
+                    - account:
+                        id: 82de27cb-6f8c-4278-b783-82d1d916eddc
+                      amount: 100000
+                      close_date: "2023-02-27T00:00:00Z"
+                      description: Wants to use open source unified API for third-party
+                        integrations
+                      id: 1e68260b-f250-427b-88f1-26ccc34c62d6
+                      remote_id: 1235
+                      last_activity_at: "2023-02-27T00:00:00Z"
+                      name: Needs third-party integrations
+                      owner_id: 64761ae1-8c42-461c-8778-9671f9d39997
+                      created_at: "2023-02-27T00:00:00Z"
+                      updated_at: "2023-02-27T00:00:00Z"
+                      stage: Closed Lost
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /opportunities/{opportunity_id}:
     get:
       operationId: getOpportunity
       summary: Get opportunity
       tags:
-        - Opportunities
-      
+      - Opportunities
       parameters:
-        - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/expand'
       responses:
-        '200':
+        "200":
           description: Opportunity
           content:
             application/json:
@@ -1059,24 +1088,22 @@ paths:
                     account:
                       id: a329053d-bf86-4b82-8356-9e897aa7dacc
                     amount: 100000
-                    close_date: '2023-02-27T00:00:00Z'
-                    description: >-
-                      Wants to use open source unified API for third-party
+                    close_date: "2023-02-27T00:00:00Z"
+                    description: Wants to use open source unified API for third-party
                       integrations
                     id: 3bde961a-90da-4daa-ab2e-cc4498c460f9
                     remote_id: 1234
-                    last_activity_at: '2023-02-27T00:00:00Z'
+                    last_activity_at: "2023-02-27T00:00:00Z"
                     name: Needs third-party integrations
                     owner: 93b0c2b5-26a8-4b92-b4e5-05d764eb1119
-                    created_at: '2023-02-27T00:00:00Z'
-                    updated_at: '2023-02-27T00:00:00Z'
+                    created_at: "2023-02-27T00:00:00Z"
+                    updated_at: "2023-02-27T00:00:00Z"
                     stage: Closed Won
     patch:
       operationId: updateOpportunity
       summary: Update opportunity
       tags:
-        - Opportunities
-      
+      - Opportunities
       parameters: []
       requestBody:
         required: true
@@ -1088,9 +1115,9 @@ paths:
                 model:
                   $ref: '#/components/schemas/create_update_opportunity'
               required:
-                - model
+              - model
       responses:
-        '200':
+        "200":
           description: Opportunity updated
           content:
             application/json:
@@ -1106,97 +1133,93 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/warnings'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
-      - name: opportunity_id
-        in: path
-        required: true
-        schema:
-          type: string
-          example: c9f58083-a370-47b5-ad02-99160ea20372
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
+    - name: opportunity_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: c9f58083-a370-47b5-ad02-99160ea20372
   /users:
     get:
       operationId: listUsers
       tags:
-        - Users
-      
+      - Users
       summary: List users
       description: Get a list of users
       parameters:
-        - $ref: '#/components/parameters/created_after'
-        - $ref: '#/components/parameters/created_before'
-        - $ref: '#/components/parameters/updated_after'
-        - $ref: '#/components/parameters/updated_before'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/expand'
-        - $ref: '#/components/parameters/page_size'
+      - $ref: '#/components/parameters/created_after'
+      - $ref: '#/components/parameters/created_before'
+      - $ref: '#/components/parameters/updated_after'
+      - $ref: '#/components/parameters/updated_before'
+      - $ref: '#/components/parameters/cursor'
+      - $ref: '#/components/parameters/expand'
+      - $ref: '#/components/parameters/page_size'
       responses:
-        '200':
+        "200":
           description: Users
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/pagination'
-                  - type: object
-                    properties:
-                      results:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/user'
+                - $ref: '#/components/schemas/pagination'
+                - type: object
+                  properties:
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/user'
               examples:
                 Example:
                   value:
-                    next: >-
-                      eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
-                    previous: >-
-                      eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+                    next: eyJpZCI6IjEyYjU3ZTM0LWZkMjEtNDk1OS04ZGIwLTA5N2EzZGEzODg2YyIsInJldmVyc2UiOmZhbHNlfQ==
+                    previous: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
                     results:
-                      - id: 9572d08b-f19f-48cc-a992-1eb7031d3f6a
-                        remote_id: 1234
-                        name: George Xing
-                        email: george@supaglue.com
-                        is_active: true
-                        created_at: '2021-11-10T00:00:00Z'
-                        updated_at: '2022-01-09T00:00:00Z'
-                      - id: a0f8385c-4947-41d2-a276-740f792bb0e6
-                        remote_id: 1235
-                        name: Thomas Chen
-                        email: tom@supaglue.com
-                        is_active: true
-                        created_at: '2021-11-10T00:00:00Z'
-                        updated_at: '2022-01-09T00:00:00Z'
+                    - id: 9572d08b-f19f-48cc-a992-1eb7031d3f6a
+                      remote_id: 1234
+                      name: George Xing
+                      email: george@supaglue.com
+                      is_active: true
+                      created_at: "2021-11-10T00:00:00Z"
+                      updated_at: "2022-01-09T00:00:00Z"
+                    - id: a0f8385c-4947-41d2-a276-740f792bb0e6
+                      remote_id: 1235
+                      name: Thomas Chen
+                      email: tom@supaglue.com
+                      is_active: true
+                      created_at: "2021-11-10T00:00:00Z"
+                      updated_at: "2022-01-09T00:00:00Z"
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
   /users/{user_id}:
     get:
       operationId: getUser
       summary: Get user
       tags:
-        - Users
-      
+      - Users
       responses:
-        '200':
+        "200":
           description: User
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/user'
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
-      - name: user_id
-        in: path
-        required: true
-        schema:
-          type: string
-          example: 0258cbc6-6020-430a-848e-aafacbadf4ae
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
+    - name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 0258cbc6-6020-430a-848e-aafacbadf4ae
   /passthrough:
     post:
       operationId: sendPassthroughRequest
       tags:
-        - Passthrough
+      - Passthrough
       summary: Send passthrough request
       description: Send request directly to a provider
       requestBody:
@@ -1212,11 +1235,11 @@ paths:
                 method:
                   type: string
                   enum:
-                    - GET
-                    - POST
-                    - PUT
-                    - PATCH
-                    - DELETE
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
                   example: GET
                 headers:
                   type: object
@@ -1232,10 +1255,10 @@ paths:
                   type: string
                   description: Body to pass to downstream
               required:
-                - path
-                - method
+              - path
+              - method
       responses:
-        '200':
+        "200":
           description: Passthrough response
           content:
             application/json:
@@ -1257,20 +1280,20 @@ paths:
                       type: string
                   body:
                     anyOf:
-                      - type: string
-                      - type: number
-                      - type: integer
-                      - type: boolean
-                      - type: array
-                        items:
-                          additionalProperties: true
-                      - type: object
+                    - type: string
+                    - type: number
+                    - type: integer
+                    - type: boolean
+                    - type: array
+                      items:
                         additionalProperties: true
+                    - type: object
+                      additionalProperties: true
                     description: The body from the downstream
                 required:
-                  - url
-                  - status
-                  - headers
+                - url
+                - status
+                - headers
               examples:
                 Example:
                   value:
@@ -1280,8 +1303,8 @@ paths:
                       x-requests-limit: 96
                     body: []
     parameters:
-      - $ref: '#/components/parameters/x-customer-id'
-      - $ref: '#/components/parameters/x-provider-name'
+    - $ref: '#/components/parameters/x-customer-id'
+    - $ref: '#/components/parameters/x-provider-name'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -1313,7 +1336,7 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
         name:
           type: string
           nullable: true
@@ -1334,30 +1357,30 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
         updated_at:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
         website:
           type: string
           nullable: true
           example: https://supaglue.com/
       required:
-        - addresses
-        - description
-        - id
-        - remote_id
-        - industry
-        - last_activity_at
-        - name
-        - number_of_employees
-        - owner_id
-        - phone_numbers
-        - created_at
-        - updated_at
-        - website
+      - addresses
+      - description
+      - id
+      - remote_id
+      - industry
+      - last_activity_at
+      - name
+      - number_of_employees
+      - owner_id
+      - phone_numbers
+      - created_at
+      - updated_at
+      - website
     create_update_account:
       type: object
       properties:
@@ -1424,7 +1447,7 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
         last_name:
           type: string
           nullable: true
@@ -1435,26 +1458,26 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
         updated_at:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
       required:
-        - account_id
-        - owner_id
-        - description
-        - id
-        - remote_id
-        - addresses
-        - email_addresses
-        - first_name
-        - last_activity_at
-        - last_name
-        - phone_numbers
-        - created_at
-        - updated_at
+      - account_id
+      - owner_id
+      - description
+      - id
+      - remote_id
+      - addresses
+      - email_addresses
+      - first_name
+      - last_activity_at
+      - last_name
+      - phone_numbers
+      - created_at
+      - updated_at
     create_update_contact:
       type: object
       properties:
@@ -1507,7 +1530,7 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-27T00:00:00Z'
+          example: "2023-02-27T00:00:00Z"
         email_addresses:
           $ref: '#/components/schemas/email_addresses'
         first_name:
@@ -1540,31 +1563,31 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-10T00:00:00Z'
+          example: "2023-02-10T00:00:00Z"
         updated_at:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-10T00:00:00Z'
+          example: "2023-02-10T00:00:00Z"
         title:
           type: string
           nullable: true
           example: Co-Founder
       required:
-        - addresses
-        - company
-        - converted_account_id
-        - converted_contact_id
-        - converted_date
-        - id
-        - remote_id
-        - last_name
-        - lead_source
-        - owner_id
-        - phone_numbers
-        - created_at
-        - updated_at
-        - title
+      - addresses
+      - company
+      - converted_account_id
+      - converted_contact_id
+      - converted_date
+      - id
+      - remote_id
+      - last_name
+      - lead_source
+      - owner_id
+      - phone_numbers
+      - created_at
+      - updated_at
+      - title
     create_update_lead:
       type: object
       properties:
@@ -1614,7 +1637,7 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-27T00:00:00Z'
+          example: "2023-02-27T00:00:00Z"
         description:
           type: string
           nullable: true
@@ -1629,7 +1652,7 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-27T00:00:00Z'
+          example: "2023-02-27T00:00:00Z"
         name:
           type: string
           nullable: true
@@ -1644,12 +1667,12 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-27T00:00:00Z'
+          example: "2023-02-27T00:00:00Z"
         updated_at:
           type: string
           nullable: true
           format: date-time
-          example: '2023-02-27T00:00:00Z'
+          example: "2023-02-27T00:00:00Z"
         stage:
           type: string
           nullable: true
@@ -1659,18 +1682,18 @@ components:
           nullable: true
           example: OPEN
       required:
-        - account_id
-        - amount
-        - description
-        - id
-        - remote_id
-        - last_activity_at
-        - name
-        - owner_id
-        - created_at
-        - updated_at
-        - stage
-        - status
+      - account_id
+      - amount
+      - description
+      - id
+      - remote_id
+      - last_activity_at
+      - name
+      - owner_id
+      - created_at
+      - updated_at
+      - stage
+      - status
     user:
       type: object
       properties:
@@ -1695,20 +1718,20 @@ components:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
         updated_at:
           type: string
           nullable: true
           format: date-time
-          example: '2022-02-27T00:00:00Z'
+          example: "2022-02-27T00:00:00Z"
       required:
-        - id
-        - remote_id
-        - name
-        - email
-        - is_active
-        - created_at
-        - updated_at
+      - id
+      - remote_id
+      - name
+      - email
+      - is_active
+      - created_at
+      - updated_at
     create_update_opportunity:
       type: object
       properties:
@@ -1719,7 +1742,7 @@ components:
         close_date:
           type: string
           nullable: true
-          example: '2022-02-10T00:00:00Z'
+          example: "2022-02-10T00:00:00Z"
         description:
           type: string
           nullable: true
@@ -1765,18 +1788,18 @@ components:
                 type: string
                 example: https://harvest.greenhouse.io/v1/candidates/
       example:
-        - dashboard_view: https://api.supaglue.com/logs/99433219-8017-4acd-bb3c-ceb23d663832
-          log_id: 99433219-8017-4acd-bb3c-ceb23d663832
-          log_summary:
-            method: POST
-            status_code: 200
-            url: https://harvest.greenhouse.io/v1/candidates/
-        - dashboard_view: https://api.supaglue.com/logs/99433219-8017-4acd-bb3c-ceb23d663832
-          log_id: 99433219-8017-4acd-bb3c-ceb23d663832
-          log_summary:
-            method: POST
-            status_code: 200
-            url: https://harvest.greenhouse.io/v1/candidates/
+      - dashboard_view: https://api.supaglue.com/logs/99433219-8017-4acd-bb3c-ceb23d663832
+        log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+        log_summary:
+          method: POST
+          status_code: 200
+          url: https://harvest.greenhouse.io/v1/candidates/
+      - dashboard_view: https://api.supaglue.com/logs/99433219-8017-4acd-bb3c-ceb23d663832
+        log_id: 99433219-8017-4acd-bb3c-ceb23d663832
+        log_summary:
+          method: POST
+          status_code: 200
+          url: https://harvest.greenhouse.io/v1/candidates/
     errors:
       type: array
       items:
@@ -1798,16 +1821,16 @@ components:
             type: string
             example: Missing Required Field
         example:
-          - detail: name is a required field on model.
-            problem_type: MISSING_REQUIRED_FIELD
-            source:
-              pointer: irure consectetur
-            title: Missing Required Field
-          - detail: name is a required field on model.
-            problem_type: MISSING_REQUIRED_FIELD
-            source:
-              pointer: et
-            title: Missing Required Field
+        - detail: name is a required field on model.
+          problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: irure consectetur
+          title: Missing Required Field
+        - detail: name is a required field on model.
+          problem_type: MISSING_REQUIRED_FIELD
+          source:
+            pointer: et
+          title: Missing Required Field
     warnings:
       type: array
       items:
@@ -1829,16 +1852,16 @@ components:
             type: string
             example: Unrecognized Field
       example:
-        - detail: An unrecognized field, age, was passed in with request data.
-          problem_type: UNRECOGNIZED_FIELD
-          source:
-            pointer: Lorem ipsum
-          title: Unrecognized Field
-        - detail: An unrecognized field, age, was passed in with request data.
-          problem_type: UNRECOGNIZED_FIELD
-          source:
-            pointer: in
-          title: Unrecognized Field
+      - detail: An unrecognized field, age, was passed in with request data.
+        problem_type: UNRECOGNIZED_FIELD
+        source:
+          pointer: Lorem ipsum
+        title: Unrecognized Field
+      - detail: An unrecognized field, age, was passed in with request data.
+        problem_type: UNRECOGNIZED_FIELD
+        source:
+          pointer: in
+        title: Unrecognized Field
     addresses:
       type: array
       items:
@@ -1858,7 +1881,7 @@ components:
           postal_code:
             type: string
             nullable: true
-            example: '94107'
+            example: "94107"
           state:
             type: string
             nullable: true
@@ -1872,31 +1895,29 @@ components:
             nullable: true
             example: null
         required:
-          - address_type
-          - city
-          - country
-          - postal_code
-          - state
-          - street1
-          - street2
+        - address_type
+        - city
+        - country
+        - postal_code
+        - state
+        - street1
+        - street2
       example:
-        - address_type: shipping
-          city: San Francisco
-          country: US
-          postal_code: '94107'
-          state: CA
-          street1: 525 Brannan
-          street2: null
-
+      - address_type: shipping
+        city: San Francisco
+        country: US
+        postal_code: "94107"
+        state: CA
+        street1: 525 Brannan
+        street2: null
     address_type:
       type: string
       enum:
-        - primary
-        - mailing
-        - other
-        - billing
-        - shipping
-
+      - primary
+      - mailing
+      - other
+      - billing
+      - shipping
     email_addresses:
       type: array
       items:
@@ -1908,14 +1929,14 @@ components:
           email_address_type:
             type: string
             enum:
-              - primary
-              - work
+            - primary
+            - work
         required:
-          - email_address
-          - email_address_type
+        - email_address
+        - email_address_type
       example:
-        - email_address: hello@supaglue.com
-          email_address_type: work
+      - email_address: hello@supaglue.com
+        email_address_type: work
     phone_numbers:
       type: array
       items:
@@ -1924,56 +1945,51 @@ components:
           phone_number:
             type: string
             nullable: true
-            example: '+14151234567'
+            example: "+14151234567"
           phone_number_type:
             $ref: '#/components/schemas/phone_number_type'
         required:
-          - phone_number
-          - phone_number_type
+        - phone_number
+        - phone_number_type
       example:
-        - phone_number: '+14151234567'
-          phone_number_type: primary
-          
+      - phone_number: "+14151234567"
+        phone_number_type: primary
     phone_number_type:
       type: string
       enum:
-        - primary
-        - mobile
-        - fax
-
+      - primary
+      - mobile
+      - fax
     pagination:
       type: object
       properties:
         next:
           type: string
           nullable: true
-          example: >-
-            eyJpZCI6IjQyNTc5ZjczLTg1MjQtNDU3MC05YjY3LWVjYmQ3MDJjNmIxNCIsInJldmVyc2UiOmZhbHNlfQ==
+          example: eyJpZCI6IjQyNTc5ZjczLTg1MjQtNDU3MC05YjY3LWVjYmQ3MDJjNmIxNCIsInJldmVyc2UiOmZhbHNlfQ==
         previous:
           type: string
           nullable: true
-          example: >-
-            eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
+          example: eyJpZCI6IjBjZDhmYmZkLWU5NmQtNDEwZC05ZjQxLWIwMjU1YjdmNGI4NyIsInJldmVyc2UiOnRydWV9
     custom_fields:
       type: object
       additionalProperties: true
-      description: >-
-        Custom properties to be inserted that are not covered by the common
+      description: Custom properties to be inserted that are not covered by the common
         model. Object keys must match exactly to the corresponding provider API.
     filter:
       oneOf:
-        - type: object
-          additionalProperties: false
-          properties:
-            type:
-              type: string
-              enum:
-                - equals
-            value:
-              type: string
-          required:
-            - type
-            - value
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - equals
+          value:
+            type: string
+        required:
+        - type
+        - value
   parameters:
     created_after:
       name: created_after
@@ -1981,7 +1997,7 @@ components:
       schema:
         type: string
         format: date-time
-        example: '2023-02-23T00:00:00.000Z'
+        example: "2023-02-23T00:00:00.000Z"
       description: If provided, will only return objects created after this datetime
     created_before:
       name: created_before
@@ -1989,7 +2005,7 @@ components:
       schema:
         type: string
         format: date-time
-        example: '2023-02-23T00:00:00.000Z'
+        example: "2023-02-23T00:00:00.000Z"
       description: If provided, will only return objects created before this datetime
     updated_after:
       name: updated_after
@@ -1997,7 +2013,7 @@ components:
       schema:
         type: string
         format: date-time
-        example: '2023-02-23T00:00:00.000Z'
+        example: "2023-02-23T00:00:00.000Z"
       description: If provided, will only return objects modified after this datetime
     updated_before:
       name: updated_before
@@ -2005,7 +2021,7 @@ components:
       schema:
         type: string
         format: date-time
-        example: '2023-02-23T00:00:00.000Z'
+        example: "2023-02-23T00:00:00.000Z"
       description: If provided, will only return objects modified before this datetime
     cursor:
       name: cursor
@@ -2020,15 +2036,14 @@ components:
       schema:
         type: string
         example: owner
-      description: >-
-        Which relations should be returned in expanded form. Multiple relation
+      description: Which relations should be returned in expanded form. Multiple relation
         names should be comma separated without spaces
     page_size:
       name: page_size
       in: query
       schema:
         type: string
-        example: '3804695'
+        example: "3804695"
       description: Number of results to return per page
     x-customer-id:
       name: x-customer-id
@@ -2036,9 +2051,7 @@ components:
       schema:
         type: string
         example: my-customer-1
-      description: >-
-        The customer ID that uniquely identifies the customer in your
-        application
+      description: The customer ID that uniquely identifies the customer in your application
       required: true
     x-provider-name:
       name: x-provider-name
